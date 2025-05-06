@@ -1,12 +1,12 @@
 import './App.css';
-import Login from './pages/login/Login';
+import Rotas from './Routes/routes.js';
 
 function App() {
   return (
     <>
-      <Login/>
+    <Rotas/>
     </>
-  )
+  );
 }
 
 export default App;
