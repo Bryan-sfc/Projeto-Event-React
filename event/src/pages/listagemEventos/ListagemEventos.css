@@ -42,8 +42,11 @@ td {
     padding-bottom: 10px;
 }
 
-.list td {
-    text-align: center;
+.list,
+td,
+th,
+td {
+    text-align: start;
     margin-top: 20px;
 }
 

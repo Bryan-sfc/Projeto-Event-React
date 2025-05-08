@@ -9,6 +9,7 @@ const CadastroEvento = () => {
         <>
             <Header
                 user="Administrador"
+                botao_logar="none"
             />
             <main>
                 <Cadastro
