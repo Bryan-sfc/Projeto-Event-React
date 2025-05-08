@@ -2,14 +2,14 @@ import "./ListagemEventos.css"
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import Comentario from "../../assets/img/Comentario.svg"
-import PresencaSim from "../../assets/img/PresencaSim.svg"
-// import PresencaNao from "../../assets/img/PresencaNao.svg"
 import Toggle from "../../components/toggle/Toggle";
 
 const ListagemEventos = () => {
     return (
         <>
-            <Header />
+            <Header 
+            user="Aluno"
+            />
             <main>
                 <section className="layout_grid listagem_section">
                     <div className="titulo_listagem">
@@ -48,46 +48,13 @@ const ListagemEventos = () => {
                                 <td data-cell="Comentario"><img src={Comentario} alt="Comentário" /></td>
                                 <td data-cell="PresencaSim"><Toggle/></td>
                             </tr>
-
-                            <tr className="list_presenca">
-                                <td>Nome do Evento</td>
-                                <td>Tipo Evento</td>
-                                <td data-cell="Comentario"><img src={Comentario} alt="Comentário" /></td>
-                                <td data-cell="PresencaSim"><Toggle/></td>
-                            </tr>
-
-                            <tr className="list_presenca">
-                                <td>Nome do Evento</td>
-                                <td>Tipo Evento</td>
-                                <td data-cell="Comentario"><img src={Comentario} alt="Comentário" /></td>
-                                <td data-cell="PresencaSim"><Toggle/></td>
-                            </tr>
-
-                            <tr className="list_presenca">
-                                <td>Nome do Evento</td>
-                                <td>Tipo Evento</td>
-                                <td data-cell="Comentario"><img src={Comentario} alt="Comentário" /></td>
-                                <td data-cell="PresencaSim"><Toggle/></td>
-                            </tr>
-
-                            <tr className="list_presenca">
-                                <td>Nome do Evento</td>
-                                <td>Tipo Evento</td>
-                                <td data-cell="Comentario"><img src={Comentario} alt="Comentário" /></td>
-                                <td data-cell="PresencaSim"><Toggle/></td>
-                            </tr>
-
-                            <tr className="list_presenca">
-                                <td>Nome do Evento</td>
-                                <td>Tipo Evento</td>
-                                <td data-cell="Comentario"><img src={Comentario} alt="Comentário" /></td>
-                                <td data-cell="PresencaSim"><Toggle/></td>
-                            </tr>
                         </table>
                     </div>
                 </section>
             </main>
-            <Footer />
+            <Footer
+            visibilidade="none"
+            />
         </>
     )
 }

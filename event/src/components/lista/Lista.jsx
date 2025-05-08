@@ -6,7 +6,7 @@ const Lista = (props) => {
     return(
         <>
         <section className="listagem">
-            <h1>{`Lista de ${props.tituloLista}`}</h1>
+            <h1>{`Lista de ${props.titulo_lista}`}</h1>
             <hr className="linha_titulo" />
             
             <div className="tabela layout_grid">
@@ -21,6 +21,12 @@ const Lista = (props) => {
                     </thead>
 
                     <tbody>
+                        <tr className="item_lista">
+                            <td data-cell={props.titulo}>xxxxxxxxx</td>
+                            <td data-cell="Tipo Evento" style={{display:props.visibilidade}} >xxxxxxxxx</td>
+                            <td data-cell="Editar"><img src={Editar} alt="" /></td>
+                            <td data-cell="Excluir"><img src={Excluir} alt="" /></td>
+                        </tr>
                         <tr className="item_lista">
                             <td data-cell={props.titulo}>xxxxxxxxx</td>
                             <td data-cell="Tipo Evento" style={{display:props.visibilidade}} >xxxxxxxxx</td>

@@ -7,18 +7,20 @@ import Lista from "../../components/lista/Lista";
 const CadastroTipoUsuario = () => {
     return (
         <>
-            <Header />
+            <Header
+                user="Administrador"
+            />
             <main>
                 <Cadastro
-                    tituloCadastro="Cadastro de Tipo Usuário"
-                    campoPlaceholder="Titulo"
+                    titulo_cadastro="Cadastro de Tipo Usuário"
+                    campo_placeholder="Titulo"
                     visibilidade="none"
-                    NomeDoBotao="Cadastrar"
+                    botao="Cadastrar"
                     banner_img={Imagem}
                 />
 
                 <Lista
-                    tituloLista="Tipo Usuário"
+                    titulo_lista="Tipo Usuário"
                     titulo="Titulo"
                     visibilidade="none"
                 />

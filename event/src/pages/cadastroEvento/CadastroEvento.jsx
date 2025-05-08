@@ -7,18 +7,20 @@ import Lista from "../../components/lista/Lista";
 const CadastroEvento = () => {
     return (
         <>
-            <Header />
+            <Header
+                user="Administrador"
+            />
             <main>
                 <Cadastro
-                    tituloCadastro="Cadastro de Eventos"
-                    campoPlaceholder="Nome"
+                    titulo_cadastro="Cadastro de Eventos"
+                    campo_placeholder="Nome"
                     // visibilidade="none"
-                    NomeDoBotao="Cadastrar"
+                    botao="Cadastrar"
                     banner_img={Imagem}
                 />
 
                 <Lista
-                    tituloLista="Eventos"
+                    titulo_lista="Eventos"
                     titulo="Nome"
                 />
             </main>

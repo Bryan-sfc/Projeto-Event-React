@@ -5,7 +5,7 @@ const Cadastro = (props) => {
     return (
         <section className="layout_grid section_cadastro">
             <div className="cadastro_titulo">
-                <h1>{props.tituloCadastro}</h1>
+                <h1>{props.titulo_cadastro}</h1>
                 <hr />
             </div>
 
@@ -17,7 +17,7 @@ const Cadastro = (props) => {
 
                 <div className="campos_cadastro">
                     <div className="campo_cad_nome">
-                        <input type="text" placeholder={props.campoPlaceholder} />
+                        <input type="text" placeholder={props.campo_placeholder} />
                     </div>
 
                     <div className="campo_cad_genero" style={{ display: props.visibilidade }}>
@@ -28,7 +28,7 @@ const Cadastro = (props) => {
                             <option value="">Batata Palha</option>
                         </select>
                     </div>
-                    <Botao nomeDoBotao={props.NomeDoBotao} />
+                    <Botao botao={props.botao} />
                 </div>
             </form>
         </section>

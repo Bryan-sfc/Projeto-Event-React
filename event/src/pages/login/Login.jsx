@@ -26,7 +26,7 @@ const Login = () => {
                         
                         </div>
                     <a href="">Esqueceu Sua Senha?</a>
-                    <Botao nomeDoBotao="Login"/>
+                    <Botao botao="Login"/>
                 </form>
             </section>
         </main>
