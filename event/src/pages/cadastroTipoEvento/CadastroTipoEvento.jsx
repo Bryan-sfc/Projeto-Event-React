@@ -2,6 +2,7 @@ import Cadastro from "../../components/cadastro/Cadastro";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import Imagem from "../../assets/img/TipoDeEvento.svg"
+import Lista from "../../components/lista/Lista";
 
 const CadastroTipoEvento = () => {
     return (
@@ -14,6 +15,12 @@ const CadastroTipoEvento = () => {
                 visibilidade="none"
                 NomeDoBotao="Cadastrar"
                 banner_img={Imagem}
+                />
+
+                <Lista
+                tituloLista="Tipo Eventos"
+                titulo="Titulo"
+                visibilidade="none"
                 />
             </main>
             <Footer/>

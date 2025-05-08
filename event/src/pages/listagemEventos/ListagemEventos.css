@@ -1,0 +1,64 @@
+.listagem_section {
+    padding: 40px 0;
+}
+
+.titulo_listagem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.titulo_listagem hr {
+    border: 1px solid #b51d44;
+    width: 90px;
+    margin-top: 10px;
+}
+
+.listagem_eventos select {
+    margin-bottom: 50px;
+    width: 356px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+}
+
+.list table {
+    width: 100%;
+}
+
+.list table {
+    width: 100%;
+    border-collapse: collapse;
+    border-color: #b51d44;
+}
+
+.list, table, th, td {
+    border-collapse: collapse;
+}
+
+.list td {
+    vertical-align: bottom;
+}
+
+.list_tabela {
+    margin-bottom: 20px;
+}
+
+/* .list_tabela {
+    border: 1px solid #b51d44;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    margin-bottom: 30px;
+}
+
+.list_presenca {
+    padding-bottom  : 40px;
+
+    border: 1px solid #b51d44;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+} */

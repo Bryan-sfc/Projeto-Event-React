@@ -21,7 +21,7 @@ const Cadastro = (props) => {
                     </div>
 
                     <div className="campo_cad_genero" style={{ display: props.visibilidade }}>
-                        <select name="" id="">
+                        <select name="Gênero" id="">
                             <option value="" disabled selected>Tipo Evento</option>
                             <option value="">Esportes</option>
                             <option value="">Digitação</option>
