@@ -1,9 +1,10 @@
+import "./ListagemEventos.css"
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
-import "./ListagemEventos.css"
 import Comentario from "../../assets/img/Comentario.svg"
 import PresencaSim from "../../assets/img/PresencaSim.svg"
-import PresencaNao from "../../assets/img/PresencaNao.svg"
+// import PresencaNao from "../../assets/img/PresencaNao.svg"
+import Toggle from "../../components/toggle/Toggle";
 
 const ListagemEventos = () => {
     return (
@@ -27,19 +28,61 @@ const ListagemEventos = () => {
 
                     <div className="list">
                         <table>
-                                <tr className="list_tabela">
-                                    <th>Titulo</th>
-                                    <th>Tipo Evento</th>
-                                    <th>Comentários</th>
-                                    <th>Participar</th>
-                                </tr>
+                            <tr className="list_tabela">
+                                <th>Titulo</th>
+                                <th>Tipo Evento</th>
+                                <th>Comentários</th>
+                                <th>Participar</th>
+                            </tr>
 
-                                <tr className="list_presenca">
-                                    <td>Nome do Evento</td>
-                                    <td>Tipo Evento</td>
-                                    <td data-cell="Comentario"><img src={Comentario} alt="" /></td>
-                                    <td data-cell="PresencaSim"><img src={PresencaSim} alt="" /></td>
-                                </tr>
+                            <tr className="list_presenca">
+                                <td>Campeonato nacional de digitação do paraguai com o presidente bolsonaro</td>
+                                <td>Tipo Evento</td>
+                                <td data-cell="Comentario"><img src={Comentario} alt="Comentário" /></td>
+                                <td data-cell="PresencaSim"><Toggle/></td>
+                            </tr>
+
+                            <tr className="list_presenca">
+                                <td>Nome do Evento</td>
+                                <td>Tipo Evento</td>
+                                <td data-cell="Comentario"><img src={Comentario} alt="Comentário" /></td>
+                                <td data-cell="PresencaSim"><Toggle/></td>
+                            </tr>
+
+                            <tr className="list_presenca">
+                                <td>Nome do Evento</td>
+                                <td>Tipo Evento</td>
+                                <td data-cell="Comentario"><img src={Comentario} alt="Comentário" /></td>
+                                <td data-cell="PresencaSim"><Toggle/></td>
+                            </tr>
+
+                            <tr className="list_presenca">
+                                <td>Nome do Evento</td>
+                                <td>Tipo Evento</td>
+                                <td data-cell="Comentario"><img src={Comentario} alt="Comentário" /></td>
+                                <td data-cell="PresencaSim"><Toggle/></td>
+                            </tr>
+
+                            <tr className="list_presenca">
+                                <td>Nome do Evento</td>
+                                <td>Tipo Evento</td>
+                                <td data-cell="Comentario"><img src={Comentario} alt="Comentário" /></td>
+                                <td data-cell="PresencaSim"><Toggle/></td>
+                            </tr>
+
+                            <tr className="list_presenca">
+                                <td>Nome do Evento</td>
+                                <td>Tipo Evento</td>
+                                <td data-cell="Comentario"><img src={Comentario} alt="Comentário" /></td>
+                                <td data-cell="PresencaSim"><Toggle/></td>
+                            </tr>
+
+                            <tr className="list_presenca">
+                                <td>Nome do Evento</td>
+                                <td>Tipo Evento</td>
+                                <td data-cell="Comentario"><img src={Comentario} alt="Comentário" /></td>
+                                <td data-cell="PresencaSim"><Toggle/></td>
+                            </tr>
                         </table>
                     </div>
                 </section>

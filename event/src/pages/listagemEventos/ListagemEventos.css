@@ -1,5 +1,6 @@
 .listagem_section {
     padding: 40px 0;
+    height: 100%;
 }
 
 .titulo_listagem {
@@ -26,39 +27,42 @@
 
 .list table {
     width: 100%;
+    padding: 0 20px;
 }
 
-.list table {
-    width: 100%;
+/* .list table {
     border-collapse: collapse;
-    border-color: #b51d44;
-}
+} */
 
-.list, table, th, td {
+.list,
+table,
+th,
+td {
     border-collapse: collapse;
+    padding-bottom: 10px;
 }
 
 .list td {
-    vertical-align: bottom;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.list_presenca td {
+    height: 90px;
+    margin-bottom: 20px;
+    padding-top: 40px;
 }
 
 .list_tabela {
-    margin-bottom: 20px;
-}
-
-/* .list_tabela {
     border: 1px solid #b51d44;
     border-top: none;
     border-left: none;
     border-right: none;
-    margin-bottom: 30px;
 }
 
 .list_presenca {
-    padding-bottom  : 40px;
-
-    border: 1px solid #b51d44;
+    border: 1px solid #201849;
     border-top: none;
     border-left: none;
     border-right: none;
-} */
+}
