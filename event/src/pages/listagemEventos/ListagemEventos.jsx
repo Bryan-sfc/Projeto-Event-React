@@ -37,10 +37,17 @@ const ListagemEventos = () => {
                             </tr>
 
                             <tr className="list_presenca">
-                                <td>Campeonato nacional de digitação do paraguai com o presidente bolsonaro</td>
-                                <td>Tipo Evento</td>
+                                <td data-cell="Titulo">Campeonato nacional de digitação do paraguai com o presidente bolsonaro</td>
+                                <td data-cell="Tipo Evento">Tipo Evento</td>
                                 <td data-cell="Comentario"><img src={Comentario} alt="Comentário" /></td>
-                                <td data-cell="PresencaSim"><Toggle/></td>
+                                <td data-cell="Presenca"><Toggle/></td>
+                            </tr>
+
+                            <tr className="list_presenca">
+                                <td data-cell="Titulo">Campeonato nacional de digitação do paraguai com o presidente bolsonaro</td>
+                                <td data-cell="Tipo Evento">Tipo Evento</td>
+                                <td data-cell="Comentario"><img src={Comentario} alt="Comentário" /></td>
+                                <td data-cell="Presenca"><Toggle/></td>
                             </tr>
                         </table>
                     </div>
