@@ -18,14 +18,13 @@ const Header = (props) => {
                     <Link href="" className="link_header" to="/Listagem">Contatos</Link>
                 </nav>
 
-                <nav className="nav_img">
-                    <Link href="" className="link_header" to="/" style={{display:props.visibilidade}}>{props.user}</Link>
-                    <img src={Icone} alt="Icone" style={{display:props.visibilidade}}/>
-                    <img src="" alt="" />
+                <nav className="nav_img" style={{ display: props.visibilidade }}>
+                    <Link href="" className="link_header" to="/" >{props.user}</Link>
+                    <img src={Icone} alt="Icone" style={{ display: props.visibilidade }} />
                 </nav>
 
-                <div>
-                    <Link href="" className="login" to="/">Logar</Link>
+                <div className="login" style={{ display: props.botao_logar }}>
+                    <Link href="" to="/" className="logar">Logar</Link>
                 </div>
             </div>
         </header>

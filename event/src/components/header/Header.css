@@ -35,4 +35,23 @@ header {
 
 .nav_img img {
     margin-left: -70px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+.login {
+    background-color: #b51d44;
+    width: 115px;
+    height: 45px;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logar {
+    text-decoration: none;
+    color: white;
 }

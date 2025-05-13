@@ -6,3 +6,10 @@ footer {
 
     height: 40px;
 }
+
+@media screen and (max-width: 768px){
+    footer {
+        height: 39px;
+        font-size: 14px;
+    }
+}

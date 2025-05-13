@@ -9,6 +9,7 @@ const ListagemEventos = () => {
         <>
             <Header 
             user="Aluno"
+            botao_logar="none"
             />
             <main>
                 <section className="layout_grid listagem_section">
@@ -37,13 +38,6 @@ const ListagemEventos = () => {
 
                             <tr className="list_presenca">
                                 <td>Campeonato nacional de digitação do paraguai com o presidente bolsonaro</td>
-                                <td>Tipo Evento</td>
-                                <td data-cell="Comentario"><img src={Comentario} alt="Comentário" /></td>
-                                <td data-cell="PresencaSim"><Toggle/></td>
-                            </tr>
-
-                            <tr className="list_presenca">
-                                <td>Nome do Evento</td>
                                 <td>Tipo Evento</td>
                                 <td data-cell="Comentario"><img src={Comentario} alt="Comentário" /></td>
                                 <td data-cell="PresencaSim"><Toggle/></td>
