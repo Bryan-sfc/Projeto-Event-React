@@ -100,7 +100,7 @@ const CadastroTipoEvento = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 await api.delete(`tiposEventos/${id.idTipoEvento}`);
-                alertar("success", "Gênero Excluido!");
+                alertar("success", "Tipo Evento Excluido!");
             }
         }).catch(error => {
             console.log(error);

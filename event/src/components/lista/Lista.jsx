@@ -24,10 +24,10 @@ const Lista = (props) => {
                             {props.lista && props.lista.length > 0 ? (
                                 props.lista.map((item) => (
                                     <tr className="item_lista"
-                                        key={item.idTipoEvento}
+                                        key={props.tipoLista == "TiposEventos" ? item.IdTipoEvento : item.IdTipoUsuario}
                                     >
 
-                                        <td data-cell={props.titulo}>{item.tituloTipoEvento}</td>
+                                        <td data-cell={props.titulo}>{props.tipoLista == "TiposEventos" ? item.tituloTipoEvento : item.tituloTipoUsuario}</td>
 
                                         <td data-cell="Tipo Evento" style={{ display: props.visibilidade }} >xxxxxxxxx</td>
 
