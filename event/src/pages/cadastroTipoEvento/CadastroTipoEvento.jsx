@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import api from "../../services/Services"
+import api from "../../services/Services";
 
 //Importar o seu SweetAlert
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 import Cadastro from "../../components/cadastro/Cadastro";
 import Footer from "../../components/footer/Footer";
@@ -12,7 +12,7 @@ import Lista from "../../components/lista/Lista";
 
 const CadastroTipoEvento = () => {
     const [tiposEventos, setTiposEventos] = useState("");
-    const [listaTipoEvento, setListaTipoEventos] = useState({});
+    const [listaTipoEventos, setListaTipoEventos] = useState({});
 
     function alertar(icone, mensagem) {
         const Toast = Swal.mixin({
@@ -64,8 +64,10 @@ const CadastroTipoEvento = () => {
         const { value: novoTipoEvento } = await Swal.fire({
             title: "Modifique seu Tipo Evento",
             input: "text",
+            confirmButtonColor: '#B51D44',
+            cancelButtonColor: '#000000',
             inputLabel: "Novo Tipo Evento",
-            inputValue: tiposEventos.TituloTipoEvento,
+            inputValue: tiposEventos.tituloTipoEvento,
             showCancelButton: true,
             inputValidator: (value) => {
                 if (!value) {
@@ -86,17 +88,13 @@ const CadastroTipoEvento = () => {
     }
 
     async function deletarTipoEvento(id) {
-        try {
-        } catch (error) {
-            console.log(error);
-        }
         Swal.fire({
             title: 'Tem Certeza?',
             text: "Essa ação não poderá ser desfeita!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#B51D44',
+            cancelButtonColor: '#000000',
             confirmButtonText: 'Sim, apagar!',
             cancelButtonText: 'Cancelar',
         }).then(async (result) => {
@@ -112,7 +110,7 @@ const CadastroTipoEvento = () => {
 
     useEffect(() => {
         listarTipoEvento();
-    }, [listaTipoEvento])
+    }, [listaTipoEventos])
 
     return (
         <>
@@ -138,7 +136,7 @@ const CadastroTipoEvento = () => {
                     titulo="Titulo"
                     visibilidade="none"
 
-                    lista={listaTipoEvento}
+                    lista={listaTipoEventos}
                     tipoLista="TiposEventos"
 
                     funcEditar={editarTipoEvento}

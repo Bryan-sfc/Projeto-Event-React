@@ -31,18 +31,16 @@ const Lista = (props) => {
 
                                         <td data-cell="Tipo Evento" style={{ display: props.visibilidade }} >xxxxxxxxx</td>
 
-                                        <td data-cell="Editar">
+                                        <td data-cell="Editar" className="botao_edicao">
                                             <img src={Editar}
                                                 alt="Caneta"
-                                                id="mensagem"
                                                 onClick={() => props.funcEditar(item)} />
                                         </td>
 
-                                        <td data-cell="Excluir">
+                                        <td data-cell="Excluir" className="botao_edicao">
                                             <img src={Excluir}
                                                 alt="Lixeira"
-                                                id="mensagem"
-                                                onClick={() => props.funcDeletar(item)} />
+                                                onClick={() => props.funcDeletar(item)}/>
                                         </td>
                                     </tr>
                                 ))
