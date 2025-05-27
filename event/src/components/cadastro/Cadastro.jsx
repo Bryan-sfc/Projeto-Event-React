@@ -32,21 +32,22 @@ const Cadastro = (props) => {
                         <input
                             style={{ display: props.visibilidade_data }}
                             type="date"
-                            onChange={(e) => props.setValorInputData(e.target.value)}
+                            value={props.valorData}
+                            onChange={(e) => props.setValorData(e.target.value)}
                         />
                     </div>
 
                     {/* tipo evento */}
                     <div className="campo_cad_genero" style={{ display: props.visibilidade_tp_evento }}>
                         <select name="Tipo Evento"
-                            value={props.valorSelectTpEvento}
-                            onChange={(e) => props.setValorSelectTpEvento(e.target.value)}
+                            value={props.valorTpEvento}
+                            onChange={(e) => props.setValorTpEvento(e.target.value)}
                         >
-                            <option disabled selected>Tipo Evento</option>
+                            <option disabled value="">Tipo Evento</option>
                             {props.lista &&
                                 props.lista.length > 0 &&
                                 props.lista.map((itemTpEvento) =>
-                                    <option value={itemTpEvento.tituloTipoEvento}>{itemTpEvento.tituloTipoEvento}</option>
+                                    <option value={itemTpEvento.idTipoEvento}>{itemTpEvento.tituloTipoEvento}</option>
                                 )}
                         </select>
                     </div>
@@ -54,10 +55,10 @@ const Cadastro = (props) => {
                     {/* Instituição */}
                     <div className="campo_cad_genero" style={{ display: props.visibilidade_instituicao }}>
                         <select name="Instituicao"
-                            value={props.valorSelectInstituicao}
-                            onChange={(e) => props.setValorSelectInstituicao(e.target.value)}
+                            value={props.valorInstituicao}
+                            onChange={(e) => props.setValorInstituicao(e.target.value)}
                         >
-                            <option disabled selected>Instituições</option>
+                            <option selected>Senai</option>
                         </select>
                     </div>
 
@@ -66,7 +67,7 @@ const Cadastro = (props) => {
                         <input
                             type="text"
                             placeholder={props.campo_descricao}
-                            value={props.valorInputDescriacao}
+                            value={props.valorInputDescricao}
                             style={{ display: props.visibilidade_descricao }}
 
                             onChange={(e) => props.setValorInputDescricao(e.target.value)}

@@ -147,6 +147,7 @@ const CadastroTipoUsuario = () => {
                     lista={listaTipoUsuario}
                     funcDeletar={deletarTipoUsuario}
                     funcEditar={editarTipoUsuario}
+                    visibilidade2="none"
                 />
             </main>
             <Footer />

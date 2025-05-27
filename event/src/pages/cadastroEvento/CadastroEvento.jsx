@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../../services/Services";
-
 
 import Imagem from "../../assets/img/CadastroEvento.svg"
 import Cadastro from "../../components/cadastro/Cadastro";
@@ -10,12 +9,12 @@ import Lista from "../../components/lista/Lista";
 import Swal from "sweetalert2";
 
 const CadastroEvento = () => {
+    const [listaEvento, setListaEvento] = useState([]);
     const [listaTipoEvento, setlistaTipoEvento] = useState([]);
-    const [tipoEvento, setTipoEvento] = useState("");
-
     const [instituicoes, setInstituicoes] = useState("BE86171E-FD1E-40DC-9BA6-85313340FCEA");
-    const [data, setData] = useState("");
-
+    const [tipoEvento, setTipoEvento] = useState("");
+    const [dataEvento, setDataEvento] = useState("");
+    const [descricao, setDescricao] = useState("");
     const [evento, setEvento] = useState("");
 
     function alertar(icone, mensagem) {
@@ -46,11 +45,48 @@ const CadastroEvento = () => {
         }
     }
 
-    function cadastrarEvento() {
-        alert("conectando")
+    async function cadastrarEvento(e) {
+        e.preventDefault();
+
+        if (evento.trim() !== "") {
+            try {
+                await api.post("eventos", { DataEvento: dataEvento, NomeEvento: evento, Descricao: descricao, IdTipoEvento: tipoEvento, IdInstituicao: instituicoes });
+
+                alertar("success", "Cadastro realizado com sucesso")
+                setEvento("");
+                setDataEvento("");
+                setDescricao("");
+                setTipoEvento("");
+
+            } catch (error) {
+                alertar("error", "Erro! Entre em contato com o suporte!")
+                console.log(error);
+
+                console.log({
+                    DataEvento: dataEvento,
+                    NomeEvento: evento,
+                    Descricao: descricao,
+                    IdTipoEvento: tipoEvento,
+                    IdInstituicao: instituicoes
+                });
+            }
+        } else {
+            alertar("warning", "Preencha o campo!")
+        }
     }
 
-    useState(() => {
+    async function listarEventos() {
+        try {
+            const resposta = await api.get("Eventos");
+
+            setListaEvento(resposta.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        listarEventos();
         listarTipoEvento();
     }, []);
 
@@ -65,38 +101,40 @@ const CadastroEvento = () => {
                     titulo_cadastro="Cadastro de Eventos"
                     campo_placeholder="Nome"
                     campo_descricao="Descrição"
-
-                    // visibilidade="none"
                     botao="Cadastrar"
                     banner_img={Imagem}
 
+                    valorInput={evento}
+                    setValorInput={setEvento}
+
+                    //Cadastrar evento
                     funcCadastro={cadastrarEvento}
 
-                    // Obter valores da descrição
+                    // Obter data
+                    valorData={dataEvento}
+                    setValorData={setDataEvento}
 
-                    //Obter data dada pelo usuário
-                    valorInputDescriacao={data}
-                    setValorInputDescricao={setData}
+                    //Obter descricao 
+                    valorInputDescricao={descricao}
+                    setValorInputDescricao={setDescricao}
 
-                    // Obter resposta do usuário no select TipoEvento
-                    valorSelectTpEvento={tipoEvento}
-                    setValorSelectTpEvento={setTipoEvento}
+                    // Obter TipoEvento 
+                    valorTpEvento={tipoEvento}
+                    setValorTpEvento={setTipoEvento}
 
-                    // Obter resposta do usuário no select Instituições
-                    valorSelectInstituicao={instituicoes}
-                    setValorSelectInstituicao={setInstituicoes}
+                    // Obter Instituições
+                    valorInstituicao={instituicoes}
+                    setValorInstituicao={setInstituicoes}
 
-                    // Listar TipoEvento e instituições no select //
+                    // Listar TipoEvento
                     lista={listaTipoEvento}
-
-                    // Valores a serem aplicados ao evento
-                    setValorInput={setEvento}
-                    setValorInputData={setEvento}
                 />
 
                 <Lista
                     titulo_lista="Eventos"
                     titulo="Nome"
+
+                    lista={listaEvento}
                 />
             </main>
             <Footer />

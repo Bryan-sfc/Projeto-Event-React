@@ -1,6 +1,7 @@
 import "./Lista.css";
 import Editar from "../../assets/img/Editar.svg"
 import Excluir from "../../assets/img/Excluir.svg"
+import Descricao from "../../assets/img/Descricao.svg"
 
 const Lista = (props) => {
     return (
@@ -18,7 +19,7 @@ const Lista = (props) => {
                                 <th style={{ display: props.visibilidade }}>Tipo Evento</th>
                                 <th>Editar</th>
                                 <th>Excluir</th>
-                                <th style={{ display: props.visibilidade }}>Comentário</th>
+                                <th style={{ display: props.visibilidade }}>Descrição</th>
                             </tr>
                         </thead>
 
@@ -31,9 +32,9 @@ const Lista = (props) => {
 
                                         <td data-cell="Nome">{props.tipoLista == "TiposEventos" ? item.tituloTipoEvento : item.tituloTipoUsuario}</td>
 
-                                        <td data-cell="Tipo Evento" style={{ display: props.visibilidade}}>xxxxxxxxx</td>
+                                        <td data-cell="Tipo Evento" style={{ display: props.visibilidade }}>xxxxxxxxx</td>
 
-                                        <td data-cell="Data Evento" style={{ display: props.visibilidade}}>xxxxxxxxx</td>
+                                        <td data-cell="Data Evento" style={{ display: props.visibilidade }}>xxxxxxxxx</td>
 
                                         <td data-cell="Editar" className="botao_edicao">
                                             <img src={Editar}
@@ -44,7 +45,14 @@ const Lista = (props) => {
                                         <td data-cell="Excluir" className="botao_edicao">
                                             <img src={Excluir}
                                                 alt="Lixeira"
-                                                onClick={() => props.funcDeletar(item)}/>
+                                                onClick={() => props.funcDeletar(item)} />
+                                        </td>
+
+                                        <td data-cell="Descrição" className="botao_edicao" style={{display: props.visibilidade2}}>
+                                            <img src={Descricao}
+                                                alt="Exclamação"
+                                                onClick={() => props.funcDescricao(item)}
+                                            />
                                         </td>
                                     </tr>
                                 ))

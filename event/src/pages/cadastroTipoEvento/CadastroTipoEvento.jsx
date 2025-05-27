@@ -147,6 +147,7 @@ const CadastroTipoEvento = () => {
 
                     funcEditar={editarTipoEvento}
                     funcDeletar={deletarTipoEvento}
+                    visibilidade2="none"
                 />
             </main>
             <Footer />

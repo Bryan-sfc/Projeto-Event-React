@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     font-size: 16px;
     margin-top: 30px;
     margin-bottom: 4px;
@@ -33,7 +33,7 @@
     font-size: 16px;
 }
 
-.campo_cad_nome input{
+.campo_cad_nome input {
     margin-bottom: 40px;
     width: 356px;
     padding-left: 5px;
@@ -43,7 +43,7 @@
     outline: none;
 }
 
-.campo_cad_genero select{
+.campo_cad_genero select {
     margin-bottom: 40px;
     width: 356px;
     border-top: none;
@@ -58,8 +58,8 @@
 }
 
 .section_cadastro {
-    height: 530px;
     min-height: 399px;
+    padding-bottom: 35px;
 }
 
 @media screen and (max-width: 880px) {
@@ -68,7 +68,7 @@
         align-items: center;
     }
 
-    .img_cadastro{
+    .img_cadastro {
         display: none;
     }
 }
@@ -78,7 +78,8 @@
         font-size: 20px;
     }
 
-    .campo_preen, .campo_cad_nome{
+    .campo_preen,
+    .campo_cad_nome {
         padding: 0px 0px 0px 0px;
     }
 }
