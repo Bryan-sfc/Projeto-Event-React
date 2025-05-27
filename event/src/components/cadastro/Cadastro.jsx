@@ -32,50 +32,44 @@ const Cadastro = (props) => {
                         <input
                             style={{ display: props.visibilidade_data }}
                             type="date"
-                            // id="start"
-                            // name="trip-start"
-
-                            onChange={(e) => props.setValorInput(e.target.value)}
+                            onChange={(e) => props.setValorInputData(e.target.value)}
                         />
                     </div>
 
                     {/* tipo evento */}
                     <div className="campo_cad_genero" style={{ display: props.visibilidade_tp_evento }}>
-                        <select name="Tipo_Evento" id="">
-                            <option value="" disabled selected>Tipo Evento</option>
-                            <option value="">Esportes</option>
+                        <select name="Tipo Evento"
+                            value={props.valorSelectTpEvento}
+                            onChange={(e) => props.setValorSelectTpEvento(e.target.value)}
+                        >
+                            <option disabled selected>Tipo Evento</option>
+                            {props.lista &&
+                                props.lista.length > 0 &&
+                                props.lista.map((itemTpEvento) =>
+                                    <option value={itemTpEvento.tituloTipoEvento}>{itemTpEvento.tituloTipoEvento}</option>
+                                )}
                         </select>
                     </div>
 
                     {/* Instituição */}
-                    {props.lista && props.lista.length > 0 ? (
-                        props.lista.map((item) => (
-                            <div className="campo_cad_genero" 
-                            style={{ display: props.visibilidade_instituicao }}
-                            key={props.tipoListaInst == item.IdInstituicao}>
-                                <select name="Gênero">
-                                    <option value="" disabled selected>Tipo Evento</option>
-
-                                    <option value="">{item.NomeFantasia}</option>
-                                </select>
-
-                            </div>
-                        ))
-                    ) :
-                        (
-                            <p>Nenhuma Insituição</p>
-                        )
-                    }
+                    <div className="campo_cad_genero" style={{ display: props.visibilidade_instituicao }}>
+                        <select name="Instituicao"
+                            value={props.valorSelectInstituicao}
+                            onChange={(e) => props.setValorSelectInstituicao(e.target.value)}
+                        >
+                            <option disabled selected>Instituições</option>
+                        </select>
+                    </div>
 
                     {/* Descrição evento */}
                     <div className="campo_cad_nome">
                         <input
                             type="text"
                             placeholder={props.campo_descricao}
-                            value={props.valorInput}
+                            value={props.valorInputDescriacao}
                             style={{ display: props.visibilidade_descricao }}
 
-                            onChange={(e) => props.setValorInput(e.target.value)}
+                            onChange={(e) => props.setValorInputDescricao(e.target.value)}
                         />
                     </div>
                     <Botao botao={props.botao} />

@@ -45,6 +45,10 @@
     width: 200px;
 }
 
+.tabela_cabecalho :nth-child(3) {
+    width: 200px;
+}
+
 .tabela_cabecalho th {
     width: 100px;
     font-weight: 500;

@@ -10,9 +10,13 @@ import Lista from "../../components/lista/Lista";
 import Swal from "sweetalert2";
 
 const CadastroEvento = () => {
+    const [listaTipoEvento, setlistaTipoEvento] = useState([]);
+    const [tipoEvento, setTipoEvento] = useState("");
+
+    const [instituicoes, setInstituicoes] = useState("BE86171E-FD1E-40DC-9BA6-85313340FCEA");
+    const [data, setData] = useState("");
+
     const [evento, setEvento] = useState("");
-    const [listaEvento, setListaEvento] = useState([]);
-    const [listaInsituicao, setlistaInsituicao] = useState([]);
 
     function alertar(icone, mensagem) {
         const Toast = Swal.mixin({
@@ -32,23 +36,22 @@ const CadastroEvento = () => {
         });
     }
 
-    async function listarInstituicao() {
+    async function listarTipoEvento() {
         try {
-            const resposta = await api.get("Instituicoes");
+            const resposta = await api.get("TiposEventos");
 
-            setlistaInsituicao(resposta.data)
-
+            setlistaTipoEvento(resposta.data)
         } catch (error) {
-
+            console.log(error);
         }
     }
 
     function cadastrarEvento() {
-
+        alert("conectando")
     }
 
     useState(() => {
-        listarInstituicao();
+        listarTipoEvento();
     }, []);
 
     return (
@@ -62,19 +65,38 @@ const CadastroEvento = () => {
                     titulo_cadastro="Cadastro de Eventos"
                     campo_placeholder="Nome"
                     campo_descricao="Descrição"
+
                     // visibilidade="none"
                     botao="Cadastrar"
                     banner_img={Imagem}
-                    setValorInput={setEvento}
 
-                    tipoListaInst="Instituicoes"
+                    funcCadastro={cadastrarEvento}
+
+                    // Obter valores da descrição
+
+                    //Obter data dada pelo usuário
+                    valorInputDescriacao={data}
+                    setValorInputDescricao={setData}
+
+                    // Obter resposta do usuário no select TipoEvento
+                    valorSelectTpEvento={tipoEvento}
+                    setValorSelectTpEvento={setTipoEvento}
+
+                    // Obter resposta do usuário no select Instituições
+                    valorSelectInstituicao={instituicoes}
+                    setValorSelectInstituicao={setInstituicoes}
+
+                    // Listar TipoEvento e instituições no select //
+                    lista={listaTipoEvento}
+
+                    // Valores a serem aplicados ao evento
+                    setValorInput={setEvento}
+                    setValorInputData={setEvento}
                 />
 
                 <Lista
                     titulo_lista="Eventos"
                     titulo="Nome"
-
-
                 />
             </main>
             <Footer />

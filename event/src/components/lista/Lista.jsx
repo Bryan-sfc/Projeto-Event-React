@@ -14,9 +14,11 @@ const Lista = (props) => {
                         <thead>
                             <tr className="tabela_cabecalho">
                                 <th>{props.titulo}</th>
+                                <th style={{ display: props.visibilidade }}>Data Evento</th>
                                 <th style={{ display: props.visibilidade }}>Tipo Evento</th>
                                 <th>Editar</th>
                                 <th>Excluir</th>
+                                <th style={{ display: props.visibilidade }}>Comentário</th>
                             </tr>
                         </thead>
 
@@ -30,6 +32,8 @@ const Lista = (props) => {
                                         <td data-cell="Nome">{props.tipoLista == "TiposEventos" ? item.tituloTipoEvento : item.tituloTipoUsuario}</td>
 
                                         <td data-cell="Tipo Evento" style={{ display: props.visibilidade}}>xxxxxxxxx</td>
+
+                                        <td data-cell="Data Evento" style={{ display: props.visibilidade}}>xxxxxxxxx</td>
 
                                         <td data-cell="Editar" className="botao_edicao">
                                             <img src={Editar}
