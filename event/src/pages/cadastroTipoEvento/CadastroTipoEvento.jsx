@@ -12,7 +12,7 @@ import Lista from "../../components/lista/Lista";
 
 const CadastroTipoEvento = () => {
     const [tiposEventos, setTiposEventos] = useState("");
-    const [listaTipoEventos, setListaTipoEventos] = useState({});
+    const [listaTipoEventos, setListaTipoEventos] = useState([]);
 
     function alertar(icone, mensagem) {
         const Toast = Swal.mixin({
@@ -110,7 +110,7 @@ const CadastroTipoEvento = () => {
 
     useEffect(() => {
         listarTipoEvento();
-    }, [listaTipoEventos])
+    }, [listaTipoEventos]);
 
     return (
         <>
@@ -122,7 +122,13 @@ const CadastroTipoEvento = () => {
                 <Cadastro
                     titulo_cadastro="Cadastro de Tipo Eventos"
                     campo_placeholder="Titulo"
+
                     visibilidade="none"
+                    visibilidade_data="none"
+                    visibilidade_tp_evento="none"
+                    visibilidade_instituicao="none"
+                    visibilidade_descricao="none"
+
                     botao="Cadastrar"
                     banner_img={Imagem}
 

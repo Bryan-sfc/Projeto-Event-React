@@ -81,7 +81,7 @@ const CadastroTipoUsuario = () => {
         })
     }
 
-        async function editarTipoUsuario(tiposUsuarios) {
+    async function editarTipoUsuario(tiposUsuarios) {
         const { value: novoTipoUsuario } = await Swal.fire({
             title: "Modifique seu Tipo Usuario",
             input: "text",
@@ -123,9 +123,15 @@ const CadastroTipoUsuario = () => {
                 <Cadastro
                     titulo_cadastro="Cadastro de Tipo Usuário"
                     campo_placeholder="Titulo"
-                    visibilidade="none"
                     botao="Cadastrar"
                     banner_img={Imagem}
+
+                    visibilidade="none"
+                    visibilidade_data="none"
+                    visibilidade_tp_evento="none"
+                    visibilidade_instituicao="none"
+                    visibilidade_descricao="none"
+
 
                     funcCadastro={cadastrarTipoUsuario}
                     valorInput={tiposUsuarios}

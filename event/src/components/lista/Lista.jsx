@@ -27,9 +27,9 @@ const Lista = (props) => {
                                         key={props.tipoLista == "TiposEventos" ? item.IdTipoEvento : item.IdTipoUsuario}
                                     >
 
-                                        <td data-cell={props.titulo}>{props.tipoLista == "TiposEventos" ? item.tituloTipoEvento : item.tituloTipoUsuario}</td>
+                                        <td data-cell="Nome">{props.tipoLista == "TiposEventos" ? item.tituloTipoEvento : item.tituloTipoUsuario}</td>
 
-                                        <td data-cell="Tipo Evento" style={{ display: props.visibilidade }} >xxxxxxxxx</td>
+                                        <td data-cell="Tipo Evento" style={{ display: props.visibilidade}}>xxxxxxxxx</td>
 
                                         <td data-cell="Editar" className="botao_edicao">
                                             <img src={Editar}

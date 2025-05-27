@@ -34,7 +34,7 @@
 }
 
 .campo_cad_nome input{
-    margin-bottom: 70px;
+    margin-bottom: 40px;
     width: 356px;
     padding-left: 5px;
     border-top: none;
@@ -44,7 +44,7 @@
 }
 
 .campo_cad_genero select{
-    margin-bottom: 70px;
+    margin-bottom: 40px;
     width: 356px;
     border-top: none;
     border-left: none;
@@ -58,7 +58,7 @@
 }
 
 .section_cadastro {
-    height: 440px;
+    height: 530px;
     min-height: 399px;
 }
 

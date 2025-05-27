@@ -15,21 +15,68 @@ const Cadastro = (props) => {
                 </div>
 
                 <div className="campos_cadastro">
-                    <div className="campo_cad_nome">
-                        <input 
-                        type="text" 
-                        placeholder={props.campo_placeholder} 
-                        value={props.valorInput}
 
-                        onChange={(e) => props.setValorInput(e.target.value)}
+                    {/* nome evento */}
+                    <div className="campo_cad_nome">
+                        <input
+                            type="text"
+                            placeholder={props.campo_placeholder}
+                            value={props.valorInput}
+
+                            onChange={(e) => props.setValorInput(e.target.value)}
                         />
                     </div>
 
-                    <div className="campo_cad_genero" style={{ display: props.visibilidade }}>
-                        <select name="Gênero" id="">
+                    {/* data evento */}
+                    <div className="campo_cad_nome">
+                        <input
+                            style={{ display: props.visibilidade_data }}
+                            type="date"
+                            // id="start"
+                            // name="trip-start"
+
+                            onChange={(e) => props.setValorInput(e.target.value)}
+                        />
+                    </div>
+
+                    {/* tipo evento */}
+                    <div className="campo_cad_genero" style={{ display: props.visibilidade_tp_evento }}>
+                        <select name="Tipo_Evento" id="">
                             <option value="" disabled selected>Tipo Evento</option>
                             <option value="">Esportes</option>
                         </select>
+                    </div>
+
+                    {/* Instituição */}
+                    {props.lista && props.lista.length > 0 ? (
+                        props.lista.map((item) => (
+                            <div className="campo_cad_genero" 
+                            style={{ display: props.visibilidade_instituicao }}
+                            key={props.tipoListaInst == item.IdInstituicao}>
+                                <select name="Gênero">
+                                    <option value="" disabled selected>Tipo Evento</option>
+
+                                    <option value="">{item.NomeFantasia}</option>
+                                </select>
+
+                            </div>
+                        ))
+                    ) :
+                        (
+                            <p>Nenhuma Insituição</p>
+                        )
+                    }
+
+                    {/* Descrição evento */}
+                    <div className="campo_cad_nome">
+                        <input
+                            type="text"
+                            placeholder={props.campo_descricao}
+                            value={props.valorInput}
+                            style={{ display: props.visibilidade_descricao }}
+
+                            onChange={(e) => props.setValorInput(e.target.value)}
+                        />
                     </div>
                     <Botao botao={props.botao} />
                 </div>
