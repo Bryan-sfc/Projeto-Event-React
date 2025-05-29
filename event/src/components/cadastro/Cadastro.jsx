@@ -22,7 +22,6 @@ const Cadastro = (props) => {
                             type="text"
                             placeholder={props.campo_placeholder}
                             value={props.valorInput}
-
                             onChange={(e) => props.setValorInput(e.target.value)}
                         />
                     </div>
