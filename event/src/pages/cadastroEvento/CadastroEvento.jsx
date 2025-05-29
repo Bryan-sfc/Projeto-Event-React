@@ -75,7 +75,7 @@ const CadastroEvento = () => {
         }
     }
 
-    async function listarEventos() {
+    async function listarEvento() {
         try {
             const resposta = await api.get("Eventos");
 
@@ -85,10 +85,58 @@ const CadastroEvento = () => {
         }
     }
 
+    async function deletarEvento(id) {
+        Swal.fire({
+            title: 'Tem Certeza?',
+            text: "Essa ação não poderá ser desfeita!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#B51D44',
+            cancelButtonColor: '#000000',
+            confirmButtonText: 'Sim, apagar!',
+            cancelButtonText: 'Cancelar',
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                await api.delete(`eventos/${id.idEvento}`);
+                alertar("success", "Evento Excluido!");
+            }
+        }).catch(error => {
+            console.log(error);
+            alertar("error", "Erro ao Excluir!");
+        })
+    }
+
+    async function editarEvento(eventos) {
+        const { value: novoEvento } = await Swal.fire({
+            title: "Modifique seu Tipo Evento",
+            input: "text",
+            confirmButtonColor: '#B51D44',
+            cancelButtonColor: '#000000',
+            inputLabel: "Novo Evento",
+            inputValue: eventos.nomeEvento,
+            showCancelButton: true,
+            inputValidator: (value) => {
+                if (!value) {
+                    return "O campo não pode estar vazio!";
+                }
+            }
+        });
+        if (novoEvento) {
+            try {
+                await api.put(`eventos/${eventos.idEvento}`,
+                    { NomeEvento: novoEvento });
+                alertar("success", "Evento Modificado!")
+            } catch (error) {
+                console.log(error);
+            }
+            Swal.fire(`Seu novo Tipo Evento: ${novoEvento}`);
+        }
+    }
+
     useEffect(() => {
-        listarEventos();
+        listarEvento();
         listarTipoEvento();
-    }, []);
+    }, [listaEvento]);
 
     return (
         <>
@@ -134,7 +182,11 @@ const CadastroEvento = () => {
                     titulo_lista="Eventos"
                     titulo="Nome"
 
+                    tipoLista="Eventos"
                     lista={listaEvento}
+
+                    funcDeletar={deletarEvento}
+                    funcEditar={editarEvento}
                 />
             </main>
             <Footer />

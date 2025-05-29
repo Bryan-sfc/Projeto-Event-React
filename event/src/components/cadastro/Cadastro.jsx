@@ -38,7 +38,7 @@ const Cadastro = (props) => {
                     </div>
 
                     {/* tipo evento */}
-                    <div className="campo_cad_genero" style={{ display: props.visibilidade_tp_evento }}>
+                    <div className="campo_cad_eventos" style={{ display: props.visibilidade_tp_evento }}>
                         <select name="Tipo Evento"
                             value={props.valorTpEvento}
                             onChange={(e) => props.setValorTpEvento(e.target.value)}
@@ -53,7 +53,7 @@ const Cadastro = (props) => {
                     </div>
 
                     {/* Instituição */}
-                    <div className="campo_cad_genero" style={{ display: props.visibilidade_instituicao }}>
+                    <div className="campo_cad_eventos" style={{ display: props.visibilidade_instituicao }}>
                         <select name="Instituicao"
                             value={props.valorInstituicao}
                             onChange={(e) => props.setValorInstituicao(e.target.value)}
