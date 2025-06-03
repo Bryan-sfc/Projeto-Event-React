@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
+import ImgDeletar from "../../assets/img/Excluir.svg"
 
-export const Modal = (props) => {
+const Modal = (props) => {
     return (
         <>
             <div className="model-overlay" onClick={props.fecharModal}></div>
@@ -40,3 +41,5 @@ export const Modal = (props) => {
         </>
     )
 }
+
+export default Modal;
