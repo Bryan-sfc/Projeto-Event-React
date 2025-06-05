@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../services/Services";
+import Modal from "../../components/modal/Modal";
 
 import "./ListagemEventos.css"
 
@@ -12,6 +13,9 @@ import Toggle from "../../components/toggle/Toggle";
 
 const ListagemEventos = () => {
     const [listaEventos, setListaEventos] = useState([]);
+    const [tipoModal, setTipoModal] = useState("");     //"descricaoevento" ou "comentario"
+    const [dadosModal, setDadosModal] = useState({});   // descrição, idEvento, etc.
+    const [modalAberto, setModalAberto] = useState(false);
 
     async function listarEventos() {
         try {
@@ -26,6 +30,14 @@ const ListagemEventos = () => {
     useEffect(() => {
         listarEventos();
     }, [])
+
+    function abrirModal(tipo, dados) {
+        //Tipo de modal
+        //dados
+        setModalAberto(true);
+        setTipoModal(tipo);
+        setDadosModal(dados);
+    }
 
     return (
         <>
@@ -70,12 +82,14 @@ const ListagemEventos = () => {
                                             <td data-cell="Descricao">
                                                 <img src={Informacao}
                                                     alt="Exclamação de Descrição"
+                                                    onClick={() => abrirModal("descricaoEvento", { descricao: item.descricao })}
                                                 />
                                             </td>
 
                                             <td data-cell="Comentario">
                                                 <img src={Comentario}
                                                     alt="Comentário"
+                                                    onClick={() => abrirModal("comentarios", { idEvento: item.idEvento })}
                                                 />
                                             </td>
 
@@ -92,11 +106,22 @@ const ListagemEventos = () => {
                     </div>
                 </section>
             </main>
-            <Footer
-                visibilidade="none"
-            />
+            <Footer visibilidade="none" />
+
+            {modalAberto && (
+                <Modal
+                    titulo={tipoModal === "descricaoEvento" ? "Descrição do evento" : "Comentário"}
+
+                    //estou verificando qual é o tipo de modal!
+                    tipoModel = {tipoModal}
+
+                    idEvento = {dadosModal.idEvento}
+
+                    descricao = {dadosModal.descricao}
+                />
+            )}
         </>
-    )
+    );
 }
 
 export default ListagemEventos;

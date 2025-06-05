@@ -1,7 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ImgDeletar from "../../assets/img/Excluir.svg"
+import api from "../../services/Services";
+import "./Modal.css"
 
 const Modal = (props) => {
+    const [comentarios, setComentarios] = useState([]);
+
+    async function listarComentarios() {
+        try {
+            const resposta = await api.get(`ComentariosEventos/ListarSomenteExibe?id=${props.idEvento}`);
+
+            setComentarios(resposta.data);
+
+            console.log(resposta);
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        listarComentarios();
+    }, [])
+
     return (
         <>
             <div className="model-overlay" onClick={props.fecharModal}></div>
@@ -30,7 +51,7 @@ const Modal = (props) => {
                                 type="text" 
                                 placeholder="Escreva seu comentário..."/>
 
-                                <button>
+                                <button className="botao">
                                     cadastrar
                                 </button>
                             </div>
@@ -42,4 +63,4 @@ const Modal = (props) => {
     )
 }
 
-export default Modal;
+export default Modal
