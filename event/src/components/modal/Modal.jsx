@@ -1,10 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import Swal from "sweetalert2";
 import ImgDeletar from "../../assets/img/Excluir.svg"
 import api from "../../services/Services";
 import "./Modal.css"
 
 const Modal = (props) => {
     const [comentarios, setComentarios] = useState([]);
+
+    function alertar(icone, mensagem) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: icone,
+            title: mensagem
+        });
+    }
 
     async function listarComentarios() {
         try {
@@ -13,9 +32,17 @@ const Modal = (props) => {
             setComentarios(resposta.data);
 
             console.log(resposta);
-            
+
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    async function cadastrarComentario() {
+        try {
+            await api.post()
+        } catch (error) {
+            alertar("error", "Erro ao cadastrar comentário")
         }
     }
 
@@ -47,9 +74,9 @@ const Modal = (props) => {
                                 </div>
                             ))}
                             <div>
-                                <input 
-                                type="text" 
-                                placeholder="Escreva seu comentário..."/>
+                                <input
+                                    type="text"
+                                    placeholder="Escreva seu comentário..." />
 
                                 <button className="botao">
                                     cadastrar
