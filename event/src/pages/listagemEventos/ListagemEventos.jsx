@@ -12,7 +12,7 @@ import Comentario from "../../assets/img/Comentario.svg"
 import Informacao from "../../assets/img/Informacao.svg"
 import Toggle from "../../components/toggle/Toggle";
 
-const ListagemEventos = () => {
+const ListagemEventos = (props) => {
     const [listaEventos, setListaEventos] = useState([]);
 
     //Modal:
@@ -82,19 +82,24 @@ const ListagemEventos = () => {
 
     async function manipularPresenca(idEvento, presenca, idPresenca) {
         try {
-            if (presenca && idPresenca != "") {
+            if (presenca === true && idPresenca) {
                 //Atualização: situação para FALSE
-                await api.put(`PresencaEventos/${idPresenca}`)
+                await api.put(`PresencasEventos/${idPresenca}`, { situacao: false })
                 alertar("success", "Sua presença foi removida")
 
-            } else if (idPresenca != "") {
+            } else if (idPresenca === false && idPresenca) {
                 //Atualização: situação para TRUE
-                await api.put(`PresencaEventos/${idPresenca}`)
+                await api.put(`PresencasEventos/${idPresenca}`, { situacao: true })
                 alertar("success", "Sua presença foi confirmada.")
-                
+
             } else {
                 //Cadastrar uma nova presenca
-                await api.post("PresencaEventos", { situacao: true, idUsuario: usuarioId, idEvento: idEvento });
+                await api.post("PresencasEventos",
+                    {
+                        situacao: true,
+                        idUsuario: usuarioId,
+                        idEvento: idEvento
+                    });
                 alertar("success", "Sua presença foi confirmada.")
             }
             listarEventos();
@@ -103,11 +108,29 @@ const ListagemEventos = () => {
         }
     }
 
-    function filtrarEventos(params) {
+    function filtrarEventos() {
+        const hoje = new Date();
+
+        return listaEventos.filter(evento => {
+            const dataEvento = new Date(evento.dataEvento);
+
+            if (filtroData.includes("todos")) return true;
+            if (filtroData.includes("futuros") && dataEvento > hoje) return true;
+            if (filtroData.includes("passados") && dataEvento < hoje) return true;
+
+            return false;
+        });
+    }
+
+    async function cadastrarComentario(comentario) {
         try {
-            
+            await api.post("ComentariosEventos", {
+                idUsuario: usuarioId,
+                idEvento: props.idEvento,
+                descricao: Comentario
+            })
         } catch (error) {
-            
+            console.log(error);
         }
     }
 
@@ -130,7 +153,7 @@ const ListagemEventos = () => {
 
                     <div className="listagem_eventos">
                         <select name="eventos" onChange={(e) => setFiltroData([e.target.value])}
-                            >
+                        >
                             <option value="todos" disabled selected>Todos os Eventos</option>
                             <option value="futuros">Somente Futuros</option>
                             <option value="passados">Somente Passados</option>
@@ -138,55 +161,62 @@ const ListagemEventos = () => {
                     </div>
 
                     <div className="list">
-                        <table>
-                            <thead>
-                                <tr className="list_tabela">
-                                    <th>Titulo</th>
-                                    <th>Data do Evento</th>
-                                    <th>Tipo Evento</th>
-                                    <th>Descrição</th>
-                                    <th>Comentários</th>
-                                    <th>Participar</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {listaEventos.length > 0 ? (
-                                    listaEventos.map((item) => (
-                                        <tr className="list_presenca">
-                                            <td data-cell="Titulo">{item.nomeEvento}</td>
-                                            <td data-cell="Data do Evento">{new Date(item.dataEvento).toLocaleDateString('pt-BR')}</td>
-                                            <td data-cell="Tipo Evento">{item.tiposEvento.tituloTipoEvento}</td>
-
-                                            <td data-cell="Descricao">
-                                                <img src={Informacao}
-                                                    alt="Exclamação de Descrição"
-                                                    onClick={() => abrirModal("descricaoEvento", { descricao: item.descricao })}
-                                                />
-                                            </td>
-
-                                            <td data-cell="Comentario">
-                                                <img src={Comentario}
-                                                    alt="Comentário"
-                                                    onClick={() => abrirModal("comentarios", { idEvento: item.idEvento })}
-                                                />
-                                            </td>
-
-                                            <td data-cell="Presenca">
-                                                <Toggle presenca={item.possuiPresenca}
-                                                    onChange={() =>
-                                                        manipularPresenca(item.idEvento, item.possuiPresenca, item.idPresenca)
-                                                    }
-                                                />
-                                            </td>
+                        {listaEventos.length > 0 ? (
+                            filtrarEventos() && filtrarEventos().map((item) =>
+                                <table>
+                                    <thead>
+                                        <tr className="list_tabela">
+                                            <th>Titulo</th>
+                                            <th>Data do Evento</th>
+                                            <th>Tipo Evento</th>
+                                            <th>Descrição</th>
+                                            <th>Comentários</th>
+                                            <th>Participar</th>
                                         </tr>
-                                    ))
-                                ) :
-                                    (
-                                        <p>Nenhum evento encontrado</p>
-                                    )
-                                }
-                            </tbody>
-                        </table>
+                                    </thead>
+                                    <tbody>
+                                        {listaEventos.length > 0 ? (
+                                            listaEventos.map((item) => (
+                                                <tr className="list_presenca">
+                                                    <td data-cell="Titulo">{item.nomeEvento}</td>
+                                                    <td data-cell="Data do Evento">{new Date(item.dataEvento).toLocaleDateString('pt-BR')}</td>
+                                                    <td data-cell="Tipo Evento">{item.tiposEvento.tituloTipoEvento}</td>
+
+                                                    <td data-cell="Descricao">
+                                                        <img src={Informacao}
+                                                            alt="Exclamação de Descrição"
+                                                            onClick={() => abrirModal("descricaoEvento", { descricao: item.descricao })}
+                                                        />
+                                                    </td>
+
+                                                    <td data-cell="Comentario">
+                                                        <img src={Comentario}
+                                                            alt="Comentário"
+                                                            onClick={() => abrirModal("comentarios", { idEvento: item.idEvento })}
+                                                        />
+                                                    </td>
+
+                                                    <td data-cell="Presenca">
+                                                        <Toggle
+                                                            presenca={item.possuiPresenca}
+                                                            manipular={() => manipularPresenca(item.idEvento, item.possuiPresenca, item.idPresenca)
+                                                            }
+                                                        />
+                                                    </td>
+                                                </tr>
+                                            ))
+                                        ) :
+                                            (
+                                                <p>Nenhum evento encontrado</p>
+                                            )
+                                        }
+                                    </tbody>
+                                </table>
+                            )
+                        ) : (
+                            <p>erro</p>
+                        )
+                        }
                     </div>
                 </section>
             </main>
