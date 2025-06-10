@@ -35,7 +35,7 @@ const Modal = (props) => {
 
             setComentarios(resposta.data);
 
-            console.log(resposta);
+            console.log(resposta.data);
 
         } catch (error) {
             console.log(error);
@@ -44,13 +44,13 @@ const Modal = (props) => {
 
     async function cadastrarComentario(comentario) {
         try {
-            await api.post("ComentariosEventos", {
+            await api.post(`ComentariosEventos`, {
+                descricao: comentario,
                 idUsuario: usuarioId,
-                idEvento: props.idEvento,
-                Descricao: comentario,
+                idEvento: props.idEvento
             })
         } catch (error) {
-            alertar("error", "Erro ao cadastrar comentário")
+            console.log(error);
         }
     }
 
