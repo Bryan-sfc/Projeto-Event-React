@@ -11,7 +11,6 @@ import Footer from "../../components/footer/Footer";
 import Comentario from "../../assets/img/Comentario.svg"
 import Informacao from "../../assets/img/Informacao.svg"
 import Toggle from "../../components/toggle/Toggle";
-import { isCursorAtEnd } from "@testing-library/user-event/dist/utils";
 
 const ListagemEventos = (props) => {
     const [listaEventos, setListaEventos] = useState([]);

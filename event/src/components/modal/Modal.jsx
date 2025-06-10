@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Swal from "sweetalert2";
 import ImgDeletar from "../../assets/img/Excluir.svg"
 import api from "../../services/Services";
 import "./Modal.css"
@@ -10,24 +9,6 @@ const Modal = (props) => {
     const [novoComentario, setNovoComentario] = useState("");
 
     const [usuarioId, setUsuarioId] = useState("2CC2DD9B-0814-4FB1-98AF-AE511A8D4E4C")
-
-    function alertar(icone, mensagem) {
-        const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-            }
-        });
-        Toast.fire({
-            icon: icone,
-            title: mensagem
-        });
-    }
 
     async function listarComentarios() {
         try {
