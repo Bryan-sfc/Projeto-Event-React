@@ -8,7 +8,7 @@ const Modal = (props) => {
 
     const [novoComentario, setNovoComentario] = useState("");
 
-    const [usuarioId, setUsuarioId] = useState("2CC2DD9B-0814-4FB1-98AF-AE511A8D4E4C")
+    const [usuarioId, setUsuarioId] = useState("d3337838-0edf-4b66-8edb-3ad09928d051")
 
     async function listarComentarios() {
         try {

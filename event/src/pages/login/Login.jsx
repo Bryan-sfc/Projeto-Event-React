@@ -7,10 +7,14 @@ import Botao from "../../components/botao/Botao"
 import { useState } from "react";
 import Swal from "sweetalert2";
 import { userDecodeToken } from "../../auth/Auth";
+import secureLocalStorage from "react-secure-storage";
+import { useNavigate } from "react-router"
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
+
+    const navigate = useNavigate();
 
     function alertar(icone, mensagem) {
         const Toast = Swal.mixin({
@@ -38,7 +42,7 @@ const Login = () => {
                 email: email,
                 senha: senha
             }
-            
+
             if (senha.trim() != "" || email.trim() != "") {
                 try {
                     const resposta = await api.post("login", usuario);
@@ -48,20 +52,25 @@ const Login = () => {
                         // token será decodificado
                         const tokenDecodificado = userDecodeToken(token);
 
-                        // console.log("token decodificado:",);
-                        // console.log(tokenDecodificado.tipoUsuario);
+                        console.log("token decodificado:",);
+                        console.log(tokenDecodificado.tipoUsuario);
 
-                        
+                        secureLocalStorage.setItem("tokenLogin", JSON.stringify(tokenDecodificado));
 
-
-                        
-                        
-                    }   
+                        if (tokenDecodificado.tipoUsuario === "Aluno") {
+                            //redirecionar a tela de aluno(branca)
+                            navigate("/Listagem")
+                        } else {
+                            //ela vai me encaminhar para tela de cadastro de eventos(verelho)
+                            navigate("/Evento")
+                        }
+                    }
                 } catch (error) {
                     console.log(error);
+                    alertar("error", "Erro! Entre em contato com o suporte!");
                 }
             } else {
-                alertar("error", "Preencha os campos vazios para realizar o login!")
+                alertar("warning", "Preencha os campos vazios para realizar o login!")
             }
 
 
