@@ -115,18 +115,6 @@ const ListagemEventos = (props) => {
         })
     }
 
-    async function cadastrarComentario(comentario) {
-        try {
-            await api.post("ComentariosEventos", {
-                idUsuario: usuarioId,
-                idEvento: props.idEvento,
-                descricao: Comentario
-            })
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     useEffect(() => {
         listarEventos();
     }, [])
@@ -184,7 +172,7 @@ const ListagemEventos = (props) => {
                                                 />
                                             </td>
 
-                                            <td data-cell="Comentario">
+                                            <td data-cell="Comentario" >
                                                 <img src={Comentario}
                                                     alt="Comentário"
                                                     onClick={() => abrirModal("comentarios", { idEvento: item.idEvento })}
