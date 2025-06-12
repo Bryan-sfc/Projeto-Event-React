@@ -1,20 +1,24 @@
 import "./Login.css"
+import Swal from "sweetalert2";
 
 import api from "../../services/Services";
 import Logo from "../../assets/img/Logo.svg"
 import Botao from "../../components/botao/Botao"
 
-import { useState } from "react";
-import Swal from "sweetalert2";
-import { userDecodeToken } from "../../auth/Auth";
 import secureLocalStorage from "react-secure-storage";
-import { useNavigate } from "react-router"
+import { useState } from "react";
+import { userDecodeToken } from "../../auth/Auth";
+
+import { useNavigate } from "react-router";
+import { useAuth } from "../../contexts/authContext";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
 
     const navigate = useNavigate();
+
+    const { setUsuario } = useAuth();
 
     function alertar(icone, mensagem) {
         const Toast = Swal.mixin({
@@ -43,21 +47,23 @@ const Login = () => {
                 senha: senha
             }
 
-            if (senha.trim() != "" || email.trim() != "") {
+            if (senha.trim() !== "" || email.trim() !== "") {
                 try {
-                    const resposta = await api.post("login", usuario);
+                    const resposta = await api.post("Login", usuario);
                     const token = resposta.data.token;
 
                     if (token) {
                         // token será decodificado
                         const tokenDecodificado = userDecodeToken(token);
+                        
+                        // console.log("token decodificado:",);
+                        // console.log(tokenDecodificado.tipoUsuario);
 
-                        console.log("token decodificado:",);
-                        console.log(tokenDecodificado.tipoUsuario);
+                        setUsuario(tokenDecodificado);
 
                         secureLocalStorage.setItem("tokenLogin", JSON.stringify(tokenDecodificado));
 
-                        if (tokenDecodificado.tipoUsuario === "Aluno") {
+                        if (tokenDecodificado.tipoUsuario === "aluno") {
                             //redirecionar a tela de aluno(branca)
                             navigate("/Listagem")
                         } else {
@@ -65,9 +71,12 @@ const Login = () => {
                             navigate("/Evento")
                         }
                     }
+
+                    alertar("success", "Login Realizado com sucesso!")
+
                 } catch (error) {
                     console.log(error);
-                    alertar("error", "Erro! Entre em contato com o suporte!");
+                    alertar("error", "Credênciais incorretas!");
                 }
             } else {
                 alertar("warning", "Preencha os campos vazios para realizar o login!")

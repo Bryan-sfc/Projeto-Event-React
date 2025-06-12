@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+import { useAuth } from "../../contexts/authContext";
+
 import api from "../../services/Services";
+
 import Modal from "../../components/modal/Modal";
 import Swal from "sweetalert2";
 
@@ -15,17 +18,17 @@ import Toggle from "../../components/toggle/Toggle";
 const ListagemEventos = (props) => {
     const [listaEventos, setListaEventos] = useState([]);
 
-    const [filtro, setFiltro] = useState(["todos"])
-
     //Modal:
     const [tipoModal, setTipoModal] = useState("");     //"descricaoevento" ou "comentario"
     const [dadosModal, setDadosModal] = useState({});   // descrição, idEvento, etc.
     const [modalAberto, setModalAberto] = useState(false);
 
     //Filtro
-    const [filtroData, setFiltroData] = useState(["Todos"]);
+    const [filtro, setFiltro] = useState(["todos"]);
 
-    const [usuarioId, setUsuarioId] = useState("2CC2DD9B-0814-4FB1-98AF-AE511A8D4E4C");
+    const {usuario} = useAuth();
+
+    // const [usuarioId, setUsuarioId] = useState("2CC2DD9B-0814-4FB1-98AF-AE511A8D4E4C");
 
     function alertar(icone, mensagem) {
         const Toast = Swal.mixin({
@@ -47,26 +50,33 @@ const ListagemEventos = (props) => {
 
     async function listarEventos() {
         try {
+            //pego os eventos em geral
             const resposta = await api.get("Eventos");
             const todosOsEventos = resposta.data;
 
-            const respostaPresenca = await api.get("PresencasEventos/ListarMinhas/" + usuarioId);
+            const respostaPresenca = await api.get("PresencasEventos/ListarMinhas/" + usuario.idUsuario)
             const minhasPresencas = respostaPresenca.data;
 
-            const eventosComPresenca = todosOsEventos.map((atualEvento) => {
+            const eventosComPresencas = todosOsEventos.map((atualEvento) => {
                 const presenca = minhasPresencas.find(p => p.idEvento === atualEvento.idEvento);
 
                 return {
-                    //as informações e eventos quanto de eventos que possuem presenca
-                    ...atualEvento, possuiPresenca: presenca?.situacao === true, idPresenca: presenca?.idPresencaEvento || null
+                    //AS INFORMACOES TANTO DE EVENTOS QUANTO DE EVENTOS QUE POSSUEM PRESENCA
+                    ...atualEvento,// Mantém os dados originais do evento atual
+                    possuiPresenca: presenca?.situacao === true,
+                    idPresenca: presenca?.idPresencaEvento || null
                 }
             })
 
-            setListaEventos(eventosComPresenca);
+            setListaEventos(eventosComPresencas);
         } catch (error) {
             console.log(error);
         }
     }
+
+    useEffect(() => {
+        listarEventos();
+    }, [])
 
     function abrirModal(tipo, dados) {
         //Tipo de modal
@@ -76,35 +86,37 @@ const ListagemEventos = (props) => {
         setDadosModal(dados);
     }
 
-    function fecharmodal() {
+    function fecharModal() {
         setModalAberto(false);
         setDadosModal({});
         setTipoModal("");
     }
 
-    async function manipularPresenca(idEvento, presenca, idPresenca) {
+    async function manipularPresenca(idEvento, presenca, IdPresencaEvento) {
         try {
-            if (presenca && idPresenca != "") {
-                //atualizacao: situacao para FALSE
-                await api.put(`PresencasEventos/${idPresenca}`, { situacao: false });
-                Swal.fire('Removido!', 'Sua presença foi removida.', 'success');
-            } else if (idPresenca != "") {
-                //atualizacao: situacao para TRUE
-                await api.put(`PresencasEventos/${idPresenca}`, { situacao: true });
-                Swal.fire('Confirmado!', 'Sua presença foi confirmada.', 'success');
+            if (presenca && IdPresencaEvento !== "") {
+                // Atualiza: situação para false (remover presença)
+                await api.put(`PresencasEventos/${IdPresencaEvento}`, { situacao: false });
+                alertar("success", "Sua presença foi removida.")
+            } else if (IdPresencaEvento !== "" && IdPresencaEvento != null) {
+                // Atualiza: situação para true (confirmar presença)
+                await api.put(`PresencasEventos/${IdPresencaEvento}`, { situacao: true });
+                alertar("success", "Sua presença foi confirmada.")
             } else {
-                //cadastrar uma nova presenca
-                await api.post("PresencasEventos", { situacao: true, idUsuario: usuarioId, idEvento: idEvento });
-                Swal.fire('Confirmado!', 'Sua presença foi confirmada.', 'success');
+                // Cria nova presença
+                await api.post("PresencasEventos", { situacao: true, idUsuario: usuario.idUsuario, idEvento: idEvento });
+                alertar("success", "Sua presença foi confirmada.")
             }
-            listarEventos()
+            listarEventos();
         } catch (error) {
-            console.log(error)
+            console.error(error);
+            alertar("error", "Algo deu errado ao manipular presença.")
         }
     }
 
     function filtrarEventos() {
         const hoje = new Date();
+
         return listaEventos.filter(evento => {
             const dataEvento = new Date(evento.dataEvento);
 
@@ -112,12 +124,8 @@ const ListagemEventos = (props) => {
             if (filtro.includes("futuros") && dataEvento > hoje) return true;
             if (filtro.includes("passados") && dataEvento < hoje) return true;
             return false;
-        })
+        });
     }
-
-    useEffect(() => {
-        listarEventos();
-    }, [])
 
     return (
         <>
@@ -155,11 +163,10 @@ const ListagemEventos = (props) => {
                                     <th>Participar</th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                {listaEventos.length > 0 ? (
+                                    filtrarEventos() && filtrarEventos().map((item) => (
 
-
-                            {listaEventos.length > 0 ? (
-                                filtrarEventos() && filtrarEventos().map((item) =>
-                                    <tbody>
                                         <tr className="list_presenca">
                                             <td data-cell="Titulo">{item.nomeEvento}</td>
                                             <td data-cell="Data do Evento">{new Date(item.dataEvento).toLocaleDateString('pt-BR')}</td>
@@ -182,16 +189,16 @@ const ListagemEventos = (props) => {
                                             <td data-cell="botao">
                                                 <Toggle
                                                     presenca={item.possuiPresenca}
-                                                    onChange={() => manipularPresenca(item.idEvento, item.possuiPresenca, item.iddPresencaEvento)}
+                                                    manipular={() => manipularPresenca(item.idEvento, item.possuiPresenca, item.idPresenca)}
                                                 />
                                             </td>
                                         </tr>
-                                    </tbody>
+                                    ))
+                                ) : (
+                                    <p>erro</p>
                                 )
-                            ) : (
-                                <p>erro</p>
-                            )
-                            }
+                                }
+                            </tbody>
                         </table>
                     </div>
                 </section>
@@ -209,7 +216,7 @@ const ListagemEventos = (props) => {
 
                     descricao={dadosModal.descricao}
 
-                    fecharModal={fecharmodal}
+                    fecharModal={fecharModal}
                 />
             )}
         </>

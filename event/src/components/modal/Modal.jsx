@@ -4,12 +4,13 @@ import React, { useEffect, useState } from 'react';
 import Swal from "sweetalert2";
 
 import ImgDeletar from "../../assets/img/Excluir.svg"
+import { useAuth } from "../../contexts/authContext";
 
 const Modal = (props) => {
     const [comentarios, setComentarios] = useState([]);
     const [novoComentario, setNovoComentario] = useState("");
 
-    const [usuario, setUsuario] = useState("d3337838-0edf-4b66-8edb-3ad09928d051")
+    const { usuario} = useAuth();
 
     function alertar(icone, mensagem) {
         const Toast = Swal.mixin({
@@ -39,11 +40,18 @@ const Modal = (props) => {
         }
     }
 
-    async function cadastrarComentario(usuarioID, comentario) {
-        if (comentario.trim() !== "") {
-            try {
-                await api.post(`ComentariosEventos`, { descricao: comentario, idUsuario: usuarioID, idEvento: props.idEvento })
+    useEffect(() => {
+        listarComentarios();
+    }, [])
 
+    async function cadastrarComentario(comentario) {
+        if (comentario.trim() != "") {
+            try {
+                await api.post("ComentariosEventos", {
+                    idUsuario: usuario,
+                    idEvento: props.idEvento,
+                    descricao: comentario
+                })
                 alertar("success", "Cadastro realizado com sucesso");
             } catch (error) {
                 console.log(error);
@@ -61,10 +69,6 @@ const Modal = (props) => {
             console.log(error);
         }
     }
-
-    useEffect(() => {
-        listarComentarios();
-    }, [])
 
     return (
         <>
@@ -92,17 +96,17 @@ const Modal = (props) => {
                             ))}
                             <div>
                                 <input
-                                    type="text"
+                                    type="text" placeholder="Escreva seu comentário..."
                                     value={novoComentario}
                                     onChange={(e) => setNovoComentario(e.target.value)}
-                                    placeholder="Escreva seu comentário..." />
+                                />
 
                                 <button
-                                    onClick={() => cadastrarComentario(usuario, novoComentario)}
+                                    onClick={() => cadastrarComentario(novoComentario)}
                                     className="botao">
                                     cadastrar
                                 </button>
-                            </div>
+                            </div  >
                         </>
                     )}
                 </div>

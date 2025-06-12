@@ -140,9 +140,9 @@ const CadastroEvento = () => {
             });
 
             if (!value) {
-                console.log("Edição cancelada pelo usuário.");
-                return;
+                alertar("warning", "Operação cancelada!")
             }
+
             await api.put(`eventos/${evento.idEvento}`, {
                 nomeEvento: value.campo1,
                 dataEvento: value.campo2,
@@ -150,10 +150,10 @@ const CadastroEvento = () => {
                 descricao: value.campo4,
             });
 
-            alertar("Atualizado!", "Dados salvos com sucesso.", "success");
+            alertar("success", "Dados salvos com sucesso.");
             listarEvento();
         } catch (error) {
-            alertar("Erro!", "Não foi possível atualizar.", "error");
+            alertar("error", "Não foi possível atualizar.");
         }
     }
 
