@@ -115,11 +115,11 @@ const CadastroEvento = () => {
             const { value } = await Swal.fire({
                 title: "Editar Tipo de Evento",
                 html: `
-        <input id="campo1" class="swal2-input" placeholder="Título" value="${evento.nomeEvento || ''}">
-        <input id="campo2" class="swal2-input" type="date" value="${evento.dataEvento?.substring(0, 10) || ''}">
-        <select id="campo3" class="swal2-select">${tiposOptions}</select>
-        <input id="campo4" class="swal2-input" placeholder="Categoria" value="${evento.descricao || ''}">
-      `,
+            <input id="campo1" class="swal2-input" placeholder="Título" value="${evento.nomeEvento || ''}">
+            <input id="campo2" class="swal2-input" type="date" value="${evento.dataEvento?.substring(0, 10) || ''}">
+            <select id="campo3" class="swal2-select">${tiposOptions}</select>
+            <input id="campo4" class="swal2-input" placeholder="Categoria" value="${evento.descricao || ''}">
+            `,
                 showCancelButton: true,
                 confirmButtonText: "Salvar",
                 cancelButtonText: "Cancelar",
@@ -138,10 +138,6 @@ const CadastroEvento = () => {
                     return { campo1, campo2, campo3, campo4 };
                 }
             });
-
-            if (!value) {
-                alertar("warning", "Operação cancelada!")
-            }
 
             await api.put(`eventos/${evento.idEvento}`, {
                 nomeEvento: value.campo1,

@@ -10,7 +10,7 @@ const Modal = (props) => {
     const [comentarios, setComentarios] = useState([]);
     const [novoComentario, setNovoComentario] = useState("");
 
-    const { usuario} = useAuth();
+    const { usuario } = useAuth();
 
     function alertar(icone, mensagem) {
         const Toast = Swal.mixin({
@@ -47,11 +47,8 @@ const Modal = (props) => {
     async function cadastrarComentario(comentario) {
         if (comentario.trim() != "") {
             try {
-                await api.post("ComentariosEventos", {
-                    idUsuario: usuario,
-                    idEvento: props.idEvento,
-                    descricao: comentario
-                })
+                await api.post("ComentariosEventos", { idUsuario: usuario.idUsuario, idEvento: props.idEvento, descricao: comentario });
+
                 alertar("success", "Cadastro realizado com sucesso");
             } catch (error) {
                 console.log(error);

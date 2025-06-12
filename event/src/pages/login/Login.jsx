@@ -36,7 +36,7 @@ const Login = () => {
             icon: icone,
             title: mensagem
         });
-    }
+    } 
 
     async function realizarAutenticacao(e) {
         e.preventDefault();
@@ -49,7 +49,8 @@ const Login = () => {
 
             if (senha.trim() !== "" || email.trim() !== "") {
                 try {
-                    const resposta = await api.post("Login", usuario);
+                    const resposta = await api.post("login", usuario);
+                    
                     const token = resposta.data.token;
 
                     if (token) {

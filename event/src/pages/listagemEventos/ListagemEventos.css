@@ -56,13 +56,6 @@ td {
     padding-top: 40px;
 }
 
-.list_tabela {
-    border: 1px solid #b51d44;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-}
-
 .list_presenca {
     border: 1px solid #201849;
     text-align: center;
