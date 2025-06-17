@@ -115,7 +115,6 @@ const CadastroTipoEvento = () => {
     return (
         <>
             <Header
-                user="Administrador"
                 botao_logar="none"
             />
             <main>

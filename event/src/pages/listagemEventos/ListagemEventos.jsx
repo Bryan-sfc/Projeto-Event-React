@@ -130,7 +130,6 @@ const ListagemEventos = (props) => {
     return (
         <>
             <Header
-                user="Aluno"
                 botao_logar="none"
             />
             <main>

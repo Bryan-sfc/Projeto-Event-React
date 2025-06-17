@@ -119,7 +119,7 @@ const Login = () => {
                         </div>
 
                     </div>
-                    <a href="">Esqueceu Sua Senha?</a>
+                    <a href="">Criar uma Conta?</a>
                     <Botao botao="Login" />
                 </form>
             </section>

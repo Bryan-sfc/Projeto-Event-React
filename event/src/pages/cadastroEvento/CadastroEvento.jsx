@@ -46,33 +46,39 @@ const CadastroEvento = () => {
     }
 
     async function cadastrarEvento(e) {
-        e.preventDefault();
-
-        if (evento.trim() !== "") {
-            try {
-                await api.post("eventos", { DataEvento: dataEvento, NomeEvento: evento, Descricao: descricao, IdTipoEvento: tipoEvento, IdInstituicao: instituicoes });
-
-                alertar("success", "Cadastro realizado com sucesso")
-                setEvento("");
-                setDataEvento("");
-                setDescricao("");
-                setTipoEvento("");
-
-            } catch (error) {
-                alertar("error", "Erro! Entre em contato com o suporte!")
-                console.log(error);
-
-                console.log({
-                    DataEvento: dataEvento,
-                    NomeEvento: evento,
-                    Descricao: descricao,
-                    IdTipoEvento: tipoEvento,
-                    IdInstituicao: instituicoes
-                });
+        let timerInterval;
+        Swal.fire({
+            title: "Aguarde!",
+            html: "I will close in <b></b> milliseconds.",
+            timer: 200,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading();
+                const timer = Swal.getPopup().querySelector("b");
+                timerInterval = setInterval(() => {
+                    timer.textContent = `${Swal.getTimerLeft()}`;
+                }, 100);
+            },
+            willClose: () => {
+                clearInterval(timerInterval);
             }
-        } else {
-            alertar("warning", "Preencha o campo!")
-        }
+        }).then(async (result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log("I was closed by the timer");
+                try {
+                    await api.post("eventos", { DataEvento: dataEvento, NomeEvento: evento, Descricao: descricao, IdTipoEvento: tipoEvento, IdInstituicao: instituicoes });
+                    alertar("success", "Cadastro realizado com sucesso")
+                    setEvento("");
+                    setDataEvento("");
+                    setDescricao("");
+                    setTipoEvento("");
+
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        });
     }
 
     async function listarEvento() {
@@ -170,7 +176,6 @@ const CadastroEvento = () => {
     return (
         <>
             <Header
-                user="Administrador"
                 botao_logar="none"
             />
             <main>
