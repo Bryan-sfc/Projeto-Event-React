@@ -91,7 +91,7 @@ const Modal = (props) => {
         }
     }
 
-    async function deletarComentario(idComentario) {
+    function deletarComentario(idComentario) {
         Swal.fire({
             title: 'Tem Certeza?',
             text: "Essa ação não poderá ser desfeita!",
@@ -101,9 +101,9 @@ const Modal = (props) => {
             cancelButtonColor: '#000000',
             confirmButtonText: 'Sim, apagar!',
             cancelButtonText: 'Cancelar',
-        }).then(async (result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
-                await api.delete(`comentariosEventos/${idComentario}`);
+                api.delete(`comentariosEventos/${idComentario}`);
                 alertar("success", "Comentário Excluido!");
             }
         }).catch(error => {

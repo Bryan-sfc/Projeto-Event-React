@@ -8,6 +8,7 @@ import Botao from "../../components/botao/Botao"
 import secureLocalStorage from "react-secure-storage";
 import { useState } from "react";
 import { userDecodeToken } from "../../auth/Auth";
+import { Link } from "react-router-dom";
 
 import { useNavigate } from "react-router";
 import { useAuth } from "../../contexts/authContext";
@@ -119,7 +120,7 @@ const Login = () => {
                         </div>
 
                     </div>
-                    <a href="">Criar uma Conta?</a>
+                    <Link to="/cadastrarUsuario" href="">Criar uma Conta?</Link>
                     <Botao botao="Login" />
                 </form>
             </section>

@@ -26,7 +26,7 @@ const ListagemEventos = (props) => {
     //Filtro
     const [filtro, setFiltro] = useState(["todos"]);
 
-    const {usuario} = useAuth();
+    const { usuario } = useAuth();
 
     // const [usuarioId, setUsuarioId] = useState("2CC2DD9B-0814-4FB1-98AF-AE511A8D4E4C");
 
