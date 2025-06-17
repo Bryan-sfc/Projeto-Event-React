@@ -50,7 +50,12 @@ const CadastroEvento = () => {
 
         if (evento.trim() !== "") {
             try {
-                await api.post("eventos", { DataEvento: dataEvento, NomeEvento: evento, Descricao: descricao, IdTipoEvento: tipoEvento, IdInstituicao: instituicoes });
+                await api.post("eventos", {
+                    DataEvento: dataEvento,
+                    NomeEvento: evento, Descricao: descricao,
+                    IdTipoEvento: tipoEvento,
+                    IdInstituicao: instituicoes
+                });
 
                 alertar("success", "Cadastro realizado com sucesso")
                 setEvento("");

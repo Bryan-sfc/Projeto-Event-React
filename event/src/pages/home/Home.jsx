@@ -45,15 +45,13 @@ const Home = (props) => {
                         <div className="proximos_eventos">
                             {listaEventos.length > 0 ? (
                                 listaEventos.map((item) => (
-                                    <div className="">
-                                        <article className="item">
-                                            <h1>{item.nomeEvento}</h1>
+                                    <article className="item">
+                                        <h1>{item.nomeEvento}</h1>
 
-                                            <p>{item.descricao}</p>
+                                        <p>{item.descricao}</p>
 
-                                            <button>Conectar</button>
-                                        </article>
-                                    </div>
+                                        <button>Conectar</button>
+                                    </article>
                                 ))
                             ) :
                                 (
