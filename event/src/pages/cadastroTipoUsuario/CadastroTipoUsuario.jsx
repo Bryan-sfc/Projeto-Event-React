@@ -148,6 +148,7 @@ const CadastroTipoUsuario = () => {
                     funcDeletar={deletarTipoUsuario}
                     funcEditar={editarTipoUsuario}
                     visibilidade2="none"
+                    visibi_del_edit="none"
                 />
             </main>
             <Footer />

@@ -71,7 +71,7 @@
 
 .tabela_cabecalho th {
     color: white;
-    font-size: small;
+    font-size: medium;
     padding-bottom: 5px;
 }
 
@@ -115,6 +115,6 @@
     }
 }
 
-.botao_edicao img{
+.botao_edicao img {
     cursor: pointer;
 }

@@ -1,6 +1,7 @@
 import "./CadastrarUsuario.css"
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import api from '../../services/Services';
 
@@ -15,6 +16,7 @@ const CriacaoUsuario = () => {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [tipoUsuario, setTipoUsuario] = useState("");
+        const navigate = useNavigate();
 
     useEffect(() => {
         listarTipoUsuario();
@@ -46,6 +48,8 @@ const CriacaoUsuario = () => {
                 setEmail("");
                 setSenha("");
                 setTipoUsuario("");
+
+                navigate("/home")
             } catch (error) {
                 Swal.fire("Erro", "Erro! entre em contato com o suporte!", "error");
                 console.log(error);
@@ -62,7 +66,7 @@ const CriacaoUsuario = () => {
             visibilidade2="none" />
 
             <section className="section_cadastro">
-                <form className="layout_grid form_cadastro" onSubmit={cadastrarUsuario}>
+                <form className="layout_grid form_cadastro_usuario" onSubmit={cadastrarUsuario}>
                     <div className="div_titulo">
                         <h1>Cadastro de Usuário</h1>
                         {/* <hr /> */}

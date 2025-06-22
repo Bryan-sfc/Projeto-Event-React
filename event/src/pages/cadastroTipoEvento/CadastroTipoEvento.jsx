@@ -35,7 +35,7 @@ const CadastroTipoEvento = () => {
     async function cadastrarTipoEvento(e) {
         e.preventDefault();
 
-        if (tiposEventos.trim() != "") {
+        if (tiposEventos.trim() !== "") {
             try {
                 await api.post("TiposEventos", { TituloTipoEvento: tiposEventos });
                 alertar("success", "Cadastro realizado com sucesso");

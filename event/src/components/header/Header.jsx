@@ -47,7 +47,6 @@ const Header = (props) => {
 
                 alertar("success", "Até Logo!");
 
-
                 navigate("/home")
             }
         }).catch(error => {

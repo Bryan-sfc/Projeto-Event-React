@@ -44,10 +44,10 @@ const Modal = (props) => {
 
     useEffect(() => {
         listarComentarios();
-    }, [comentarios])
+    }, [])
 
     async function cadastrarComentario(comentario) {
-        if (comentario.trim() != "") {
+        if (comentario.trim() !== "") {
             let timerInterval;
             Swal.fire({
                 title: "Auto close alert!",
@@ -65,7 +65,6 @@ const Modal = (props) => {
                     clearInterval(timerInterval);
                 }
             }).then(async (result) => {
-                /* Read more about handling dismissals below */
                 if (result.dismiss === Swal.DismissReason.timer) {
                     try {
                         console.log(usuario.idUsuario);
@@ -82,10 +81,8 @@ const Modal = (props) => {
                         console.log(error);
                         alertar("error", "Erro! Entre em contato com o suporte!");
                     }
-                    console.log("I was closed by the timer");
                 }
             });
-
         } else {
             alertar("warning", "Preencha o campo!");
         }

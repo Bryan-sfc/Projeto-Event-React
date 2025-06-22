@@ -11,7 +11,7 @@ import Lista from "../../components/lista/Lista";
 const CadastroEvento = () => {
     const [listaEvento, setListaEvento] = useState([]);
     const [listaTipoEvento, setlistaTipoEvento] = useState([]);
-    const [instituicoes, setInstituicoes] = useState("BE86171E-FD1E-40DC-9BA6-85313340FCEA");
+    const [instituicoes, setInstituicoes] = useState("79FF1CF4-7BDB-4788-A502-25781226E880");
     const [tipoEvento, setTipoEvento] = useState("");
     const [dataEvento, setDataEvento] = useState("");
     const [descricao, setDescricao] = useState("");
