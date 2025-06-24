@@ -112,7 +112,6 @@ const Modal = (props) => {
     return (
         <>
             <div className="model-overlay" onClick={props.fecharModal}>
-
                 <div className="model" onClick={(e) => e.stopPropagation()}>
                     <h1>{props.titulo}</h1>
                     <div className="model_conteudo">
@@ -134,7 +133,7 @@ const Modal = (props) => {
                                         <hr />
                                     </div>
                                 ))}
-                                <div>
+                                <div className="cadastro_model">
                                     <input
                                         type="text" placeholder="Escreva seu comentário..."
                                         value={novoComentario}

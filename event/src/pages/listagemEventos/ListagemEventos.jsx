@@ -207,7 +207,7 @@ const ListagemEventos = (props) => {
 
             {modalAberto && (
                 <Modal
-                    titulo={tipoModal === "descricaoEvento" ? "Descrição do evento" : "comentario"}
+                    titulo={tipoModal === "descricaoEvento" ? "Descrição do evento" : "Comentários"}
 
                     //estou verificando qual é o tipo de modal!
                     tipoModel={tipoModal}
