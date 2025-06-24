@@ -11,7 +11,7 @@ import Lista from "../../components/lista/Lista";
 const CadastroEvento = () => {
     const [listaEvento, setListaEvento] = useState([]);
     const [listaTipoEvento, setlistaTipoEvento] = useState([]);
-    const [instituicoes, setInstituicoes] = useState("79FF1CF4-7BDB-4788-A502-25781226E880");
+    const [instituicoes, setInstituicoes] = useState("BE86171E-FD1E-40DC-9BA6-85313340FCEA");
     const [tipoEvento, setTipoEvento] = useState("");
     const [dataEvento, setDataEvento] = useState("");
     const [descricao, setDescricao] = useState("");
@@ -48,11 +48,19 @@ const CadastroEvento = () => {
     async function cadastrarEvento(e) {
         e.preventDefault();
 
+        console.log(dataEvento);
+        console.log(evento);
+        console.log(descricao);
+        console.log(tipoEvento);
+        console.log(instituicoes);
+        
+
         if (evento.trim() !== "") {
             try {
                 await api.post("eventos", {
                     DataEvento: dataEvento,
-                    NomeEvento: evento, Descricao: descricao,
+                    NomeEvento: evento, 
+                    Descricao: descricao,
                     IdTipoEvento: tipoEvento,
                     IdInstituicao: instituicoes
                 });

@@ -6,6 +6,7 @@ import Banner from "../../assets/img/EventbannerAzul.png"
 import Mapa from "../../assets/img/Mapppsa.png"
 import Visao from "../../assets/img/VisaoAzull.png"
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import api from "../../services/Services";
 
 
@@ -50,7 +51,9 @@ const Home = (props) => {
 
                                         <p>{item.descricao}</p>
 
-                                        <button>Conectar</button>
+                                        <Link to="/" href="">
+                                            <button>Conectar</button>
+                                        </Link>
                                     </article>
                                 ))
                             ) :
