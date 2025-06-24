@@ -1,7 +1,7 @@
 import "./Modal.css"
 
 import React, { useEffect, useState } from 'react';
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../contexts/authContext";
 
 import api from "../../services/Services";
 import Swal from "sweetalert2";
