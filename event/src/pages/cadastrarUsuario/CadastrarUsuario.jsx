@@ -12,11 +12,11 @@ import Footer from '../../components/footer/Footer';
 
 const CriacaoUsuario = () => {
     const [listaTipoUsuario, setListaTipoUsuario] = useState([]);
-    const [criarUsuario, setCriarUsuario] = useState(""); 
+    const [criarUsuario, setCriarUsuario] = useState("");
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [tipoUsuario, setTipoUsuario] = useState("");
-        const navigate = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
         listarTipoUsuario();
@@ -32,7 +32,7 @@ const CriacaoUsuario = () => {
     }
 
     async function cadastrarUsuario(event) {
-        event.preventDefault(); 
+        event.preventDefault();
 
         if (tipoUsuario.trim() !== "" && criarUsuario.trim() !== "" && email.trim() !== "" && senha.trim() !== "") {
             try {
@@ -62,14 +62,15 @@ const CriacaoUsuario = () => {
     return (
         <>
             <Header
-            visibilidade="none"
-            visibilidade2="none" />
+                botao_logar="none"
+                tpUsuario="Administrador"
+            />
 
-            <section className="section_cadastro">
+            <section className="">
                 <form className="layout_grid form_cadastro_usuario" onSubmit={cadastrarUsuario}>
-                    <div className="div_titulo">
+                    <div className="cadastro_titulo">
                         <h1>Cadastro de Usuário</h1>
-                        {/* <hr /> */}
+                        <hr />
                     </div>
 
                     <div className="imagem_form">

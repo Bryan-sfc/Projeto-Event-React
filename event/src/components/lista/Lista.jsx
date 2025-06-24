@@ -66,7 +66,7 @@ const Lista = (props) => {
                                 ))
                             ) :
                                 (
-                                    <p>Nenhum Tipo Evento Encontrado</p>
+                                    <p className="pdalista">Nenhum Tipo Evento Encontrado</p>
                                 )
                             }
                         </tbody>

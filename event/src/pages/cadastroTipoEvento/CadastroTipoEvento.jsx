@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import Cadastro from "../../components/cadastro/Cadastro";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
-import Imagem from "../../assets/img/TipoDeEvento.svg"
+import Imagem from "../../assets/img/tipoevento (1) (1) (1).png"
 import Lista from "../../components/lista/Lista";
 
 const CadastroTipoEvento = () => {
@@ -116,6 +116,7 @@ const CadastroTipoEvento = () => {
         <>
             <Header
                 botao_logar="none"
+                tpUsuario="Administrador"
             />
             <main>
                 <Cadastro

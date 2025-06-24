@@ -1,5 +1,5 @@
 import "./Header.css";
-import Logo from "../../assets/img/Logo.svg";
+import Logo from "../../assets/img/LogoNovaa.png";
 import Icone from "../../assets/img/Administracao.svg";
 
 import { Link } from "react-router-dom";
@@ -71,7 +71,7 @@ const Header = (props) => {
                 </nav>
 
                 <nav className="nav_img" to="/" style={{ display: props.visibilidade }}>
-                    <Link href="" className="link_header" >Alunos</Link>
+                    <Link href="" className="link_header" >{props.tpUsuario}</Link>
                     <img src={Icone} onClick={() => realizarLogOut()} alt="Icone" style={{ display: props.visibilidade }} />
                 </nav>
 

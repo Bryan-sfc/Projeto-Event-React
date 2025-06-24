@@ -1,7 +1,7 @@
 import "./Modal.css"
 
 import React, { useEffect, useState } from 'react';
-import { useAuth } from "../../contexts/authContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 import api from "../../services/Services";
 import Swal from "sweetalert2";
@@ -44,7 +44,7 @@ const Modal = (props) => {
 
     useEffect(() => {
         listarComentarios();
-    }, [])
+    }, [comentarios])
 
     async function cadastrarComentario(comentario) {
         if (comentario.trim() !== "") {

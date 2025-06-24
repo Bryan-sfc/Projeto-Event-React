@@ -1,5 +1,5 @@
 .listagem {
-    background-color: #b51d44;
+    background-color: #0e2a48;
     min-height: calc(100vh - (75px + 399px + 40px));
     display: flex;
     flex-direction: column;
@@ -82,6 +82,7 @@
 .item_lista {
     border-bottom: white 1px solid;
 }
+
 
 @media screen and (max-width: 768px) {
 

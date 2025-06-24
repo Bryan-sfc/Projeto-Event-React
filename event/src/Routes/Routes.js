@@ -8,7 +8,7 @@ import CadastroEvento from "../pages/cadastroEvento/CadastroEvento";
 import CadastroTipoEvento from "../pages/cadastroTipoEvento/CadastroTipoEvento";
 import CadastroTipoUsuario from "../pages/cadastroTipoUsuario/CadastroTipoUsuario";
 import CadastraUsuario from "../pages/cadastrarUsuario/CadastrarUsuario"
-import { useAuth } from "../contexts/authContext";
+import { useAuth } from "../contexts/AuthContext.js";
 
 const Privado = (props) => {
     const { usuario } = useAuth();

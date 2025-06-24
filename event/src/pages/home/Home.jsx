@@ -2,9 +2,9 @@ import "./Home.css"
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer"
 
-import Banner from "../../assets/img/Banner.svg"
-import Mapa from "../../assets/img/Mapa.svg"
-import Visao from "../../assets/img/Visao.svg"
+import Banner from "../../assets/img/EventbannerAzul.png"
+import Mapa from "../../assets/img/Mapppsa.png"
+import Visao from "../../assets/img/VisaoAzull.png"
 import { useEffect, useState } from "react";
 import api from "../../services/Services";
 

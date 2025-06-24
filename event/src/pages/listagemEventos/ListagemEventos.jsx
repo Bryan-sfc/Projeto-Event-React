@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../../contexts/authContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 import api from "../../services/Services";
 
@@ -131,6 +131,7 @@ const ListagemEventos = (props) => {
         <>
             <Header
                 botao_logar="none"
+                tpUsuario="Aluno"
             />
             <main>
                 <section className="layout_grid listagem_section">

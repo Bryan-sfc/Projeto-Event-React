@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../../services/Services";
 import Swal from "sweetalert2";
 
-import Imagem from "../../assets/img/CadastroEvento.svg"
+import Imagem from "../../assets/img/cadastro.png"
 import Cadastro from "../../components/cadastro/Cadastro";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
@@ -176,6 +176,7 @@ const CadastroEvento = () => {
         <>
             <Header
                 botao_logar="none"
+                tpUsuario="Administrador"
             />
             <main>
                 <Cadastro

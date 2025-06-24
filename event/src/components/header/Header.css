@@ -20,7 +20,7 @@ header {
 
 
 .logo_header {
-    height: 20px;
+    height: 50px;
     width: 115px;
     display: flex;
     align-self: center;
@@ -33,8 +33,6 @@ header {
     text-decoration: none;
 }   
 
-
-
 .nav_img {
     display: flex;
     cursor: pointer;
@@ -46,7 +44,7 @@ header {
 }
 
 .login {
-    background-color: #b51d44;
+    background-color: #0e2a48;
     width: 115px;
     height: 45px;
     border-radius: 5px;
@@ -62,6 +60,8 @@ header {
     color: white;
 }
 
-@media screen and (max-width: 768px){
-    
+@media screen and (max-width: 768px) {
+    .nav_header Link {
+        font-size: 10px;
+    }
 }
