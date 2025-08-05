@@ -61,7 +61,7 @@ header {
 }
 
 @media screen and (max-width: 768px) {
-    .nav_header Link {
-        font-size: 10px;
+    header {
+        display: none;
     }
 }

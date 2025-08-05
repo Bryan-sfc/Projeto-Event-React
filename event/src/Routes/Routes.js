@@ -7,7 +7,7 @@ import ListagemEventos from "../pages/listagemEventos/ListagemEventos";
 import CadastroEvento from "../pages/cadastroEvento/CadastroEvento";
 import CadastroTipoEvento from "../pages/cadastroTipoEvento/CadastroTipoEvento";
 import CadastroTipoUsuario from "../pages/cadastroTipoUsuario/CadastroTipoUsuario";
-import CadastraUsuario from "../pages/cadastrarUsuario/CadastrarUsuario"
+import CadastrarUsuario from "../pages/cadastrarUsuario/CadastrarUsuario"
 import { useAuth } from "../contexts/authContext";
 
 const Privado = (props) => {
@@ -35,7 +35,7 @@ const Rotas = () => {
             <Routes>
                 <Route element={<Login />} path="/" exact />
                 <Route element={<Home />} path="/Home" exact />
-                <Route element={<CadastraUsuario />} path="/CadastrarUsuario" exact />
+                <Route element={<CadastrarUsuario />} path="/CadastrarUsuario" exact />
                 <Route element={<Privado tipoPermitido="admin" Item={CadastroEvento} />} path="/Evento" />
                 <Route element={<Privado tipoPermitido="aluno" Item={ListagemEventos} />} path="/Listagem" />
                 <Route element={<Privado tipoPermitido="admin" Item={CadastroTipoEvento} />} path="/TipoEvento" />
@@ -45,4 +45,4 @@ const Rotas = () => {
     )
 }
 
-export default Rotas;
+export default Rotas;   
